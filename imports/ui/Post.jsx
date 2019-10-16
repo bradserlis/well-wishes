@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Post extends Component {
   render() {
     return(
-        <li>{this.props.post.text}</li>
+        <li>{this.props.post.title}: {this.props.post.content}</li>
       )
   }
 }
