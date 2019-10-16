@@ -1,13 +1,33 @@
-import React from 'react';
-import Hello from './Hello.jsx';
-import Info from './Info.jsx';
+import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
 
-const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello />
-    <Info />
-  </div>
-);
+import { Posts } from '../api/posts';
+import Post from './Post.jsx';
 
-export default App;
+class App extends Component {
+  renderPosts = () => {
+    return this.props.posts.map( (post) => (
+      <Post key={post._id} post={post} />
+    ));
+  }
+
+  render() {
+    return (
+      <div className='container'>
+        <header>
+          <h1> Post List </h1>
+        </header>
+
+        <ul>
+          {this.renderPosts()}
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default withTracker( ()=> {
+  return { 
+    posts: Posts.find().fetch(),
+  };
+})(App);
