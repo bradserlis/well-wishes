@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 
 import { Posts } from '../api/posts.js';
 
 export default class Post extends Component {
   deletePost = () => {
-    Posts.remove(this.props.post._id);
+    Meteor.call('posts.remove', this.props.posts._id);
   }
 
   render() {

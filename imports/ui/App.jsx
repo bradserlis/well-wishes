@@ -17,15 +17,16 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.contentInput).value.trim();
+    const content = ReactDOM.findDOMNode(this.refs.contentInput).value.trim();
     const title = ReactDOM.findDOMNode(this.refs.titleInput).value.trim();
-    Posts.insert({
+
+    let text = {
+      content: content,
       title: title,
-      content: text,
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
-      createdAt: new Date(), // current time
-    });
+    }
+
+    Meteor.call('posts.insert', text);
+
     // Clear form
     ReactDOM.findDOMNode(this.refs.contentInput).value = '';
     ReactDOM.findDOMNode(this.refs.titleInput).value = '';
