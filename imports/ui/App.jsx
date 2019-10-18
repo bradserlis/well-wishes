@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
+import { Meteor } from 'meteor/meteor';
 
 import { Posts } from '../api/posts';
 import Post from './Post.jsx';
+import AccountsUIWrapper from './AccountsUIWrapper';
 
 class App extends Component {
   renderPosts = () => {
@@ -20,7 +22,8 @@ class App extends Component {
     Posts.insert({
       title: title,
       content: text,
-      author: 'test user',
+      owner: Meteor.userId(),
+      username: Meteor.user().username,
       createdAt: new Date(), // current time
     });
     // Clear form
@@ -33,21 +36,29 @@ class App extends Component {
       <div className="container">
         <header>
           <h1> Post List </h1>
-          <form className="new-task" onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              ref="titleInput"
-              placeholder="Post title"
-            />
-            <input
-              type="text"
-              ref="contentInput"
-              placeholder="Type to add new post"
-            />
-            <button
-              onSubmit={this.handleSubmit}
-            > Submit </button> 
-          </form>
+          <AccountsUIWrapper />
+
+          { this.props.currentUser ?
+            (
+              <form className="new-task" onSubmit={this.handleSubmit}>
+                <input
+                  type="text"
+                  ref="titleInput"
+                  placeholder="Post title"
+                />
+                <input
+                  type="text"
+                  ref="contentInput"
+                  placeholder="Type to add new post"
+                />
+                <button
+                  onSubmit={this.handleSubmit}
+                >
+                Submit
+                </button>
+              </form>
+            ) : ''
+          }
         </header>
 
         <ul>
@@ -61,5 +72,6 @@ class App extends Component {
 export default withTracker(() => {
   return {
     posts: Posts.find().fetch(),
+    currentUser: Meteor.user(),
   };
 })(App);

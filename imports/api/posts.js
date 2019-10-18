@@ -12,12 +12,13 @@ PostSchema = new SimpleSchema({
     type: String,
     label: "Content",
   },
-  author: {
+  owner: {
     type: String,
-    label: "Author",
-    autoValue: () => {
-      return this.userId
-    }
+    label: "Owner",
+  },
+  username: {
+    type: String,
+    label: "Username",
   },
   createdAt: {
     type: Date,
