@@ -71,6 +71,8 @@ class App extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe('posts');
+  
   return {
     posts: Posts.find().fetch(),
     currentUser: Meteor.user(),

@@ -5,18 +5,22 @@ import { Posts } from '../api/posts.js';
 
 export default class Post extends Component {
   deletePost = () => {
-    Meteor.call('posts.remove', this.props.posts._id);
+    Meteor.call('posts.remove', this.props.post._id);
   }
 
   render() {
     return (
       <li>
-        <button
+      { this.props.post.owner === Meteor.userId() ? 
+        (
+          <button
           className="delete"
           onClick={this.deletePost}
-        >
-        &times;
-        </button>
+          >
+          &times;
+          </button>
+        ) : ''
+      }
         <span className='text'>      
         <strong>{this.props.post.title}</strong>
         : 
