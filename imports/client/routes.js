@@ -13,10 +13,13 @@ import MainLayout from './layouts/MainLayout';
 Meteor.startup(() => {
   render(
     <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={App} />
-        <Route path='/home' component={Home} />
-      </Switch>
+      <div>
+        <MainLayout />
+        <Switch>
+          <Route exact path='/' render={props => <App {...props} />} />
+          <Route path='/home' component={Home} />
+        </Switch>
+      </div>
     </BrowserRouter>,
     document.getElementById('react-target'));
 });

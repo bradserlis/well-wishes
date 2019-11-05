@@ -5,7 +5,6 @@ import { Meteor } from 'meteor/meteor';
 
 import { Posts } from '../api/posts';
 import Post from './Post.jsx';
-import MainLayout from '../client/layouts/MainLayout';
 
 class App extends Component {
   renderPosts = () => {
@@ -35,7 +34,6 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-      <MainLayout />
         <header>
           <h1> Post List </h1>
 

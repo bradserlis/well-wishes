@@ -1,0 +1,40 @@
+@import '_common.scss';
+
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.main-layout {
+  h1 {
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    flex: 1;
+    border-bottom: 2px rgba(128, 128, 128, 0.28) solid;
+    padding-bottom: 15px;
+  }
+
+  .main-layout-links {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+  }
+}
+
+#post-container {
+  textarea {
+    display: block;
+    height: 100px;
+    width: $input-width;
+    font-size: 20px;
+  }
+
+  input {
+    display: block;
+    width: $input-width;
+    font-size: 20px;
+  }
+}
