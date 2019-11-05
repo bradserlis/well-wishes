@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Posts } from '../api/posts';
 import Post from './Post.jsx';
-import AccountsUIWrapper from './AccountsUIWrapper';
+import MainLayout from '../client/layouts/MainLayout';
 
 class App extends Component {
   renderPosts = () => {
@@ -35,29 +35,31 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+      <MainLayout />
         <header>
           <h1> Post List </h1>
-          <AccountsUIWrapper />
 
           { this.props.currentUser ?
             (
-              <form className="new-task" onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  ref="titleInput"
-                  placeholder="Post title"
-                />
-                <input
-                  type="text"
-                  ref="contentInput"
-                  placeholder="Type to add new post"
-                />
-                <button
-                  onSubmit={this.handleSubmit}
-                >
-                Submit
-                </button>
-              </form>
+              <div id='post-container'>
+                <form className="new-task" onSubmit={this.handleSubmit}>
+                  <input
+                    type="text"
+                    ref="titleInput"
+                    placeholder="Post title"
+                  />
+                  <textarea
+                    type="text"
+                    ref="contentInput"
+                    placeholder="Type to add new post"
+                  />
+                  <button
+                    onSubmit={this.handleSubmit}
+                  >
+                  Submit
+                  </button>
+                </form>
+              </div>
             ) : ''
           }
         </header>
@@ -72,7 +74,7 @@ class App extends Component {
 
 export default withTracker(() => {
   Meteor.subscribe('posts');
-  
+
   return {
     posts: Posts.find().fetch(),
     currentUser: Meteor.user(),

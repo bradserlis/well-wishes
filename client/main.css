@@ -2,3 +2,8 @@ body {
   padding: 10px;
   font-family: sans-serif;
 }
+
+#post-container input,
+#post-container textarea {
+  display: block;
+}
