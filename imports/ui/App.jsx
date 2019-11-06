@@ -74,7 +74,7 @@ export default withTracker(() => {
   Meteor.subscribe('posts');
 
   return {
-    posts: Posts.find().fetch(),
+    posts: Posts.find({ owner: {$ne: Meteor.userId()} }).fetch(),
     currentUser: Meteor.user(),
   };
 })(App);
