@@ -17,7 +17,7 @@ Meteor.startup(() => {
         <MainLayout />
         <Switch>
           <Route exact path='/' render={props => <App {...props} />} />
-          <Route path='/home' component={Home} />
+          <Route path='/home' render={props => <Home {...props} />} />
         </Switch>
       </div>
     </BrowserRouter>,
