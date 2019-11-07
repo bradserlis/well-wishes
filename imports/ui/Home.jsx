@@ -36,11 +36,9 @@ class Home extends Component {
   }
   
   render(){
-    console.log(this.props.posts);
     return (
       <div className='home-container'>
         <h1> Home page </h1>
-        <p> You are {Meteor.user().username} </p>
         <div id='home-form-container'>
           <form className="new-task" onSubmit={this.handleSubmit}>
             <input
