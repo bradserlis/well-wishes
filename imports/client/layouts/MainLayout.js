@@ -13,7 +13,7 @@ const MainLayout = (props) => {
         <nav>
           <div className='main-layout-links'>
             <Link to='/home'>Home </Link>
-            <Link to='/'>Posts</Link>
+            <Link to='/search'>Search</Link>
           </div>
         </nav>
       </header>

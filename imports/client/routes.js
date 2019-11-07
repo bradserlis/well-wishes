@@ -8,6 +8,7 @@ import { render, ReactDOM } from 'react-dom';
 
 import App from '../ui/App';
 import Home from '../ui/Home';
+import Search from '../ui/Search';
 import MainLayout from './layouts/MainLayout';
 
 Meteor.startup(() => {
@@ -18,6 +19,7 @@ Meteor.startup(() => {
         <Switch>
           <Route exact path='/' render={props => <App {...props} />} />
           <Route path='/home' render={props => <Home {...props} />} />
+          <Route path='/search' render={props => <Search {...props} />} />
         </Switch>
       </div>
     </BrowserRouter>,
