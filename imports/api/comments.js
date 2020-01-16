@@ -15,17 +15,19 @@ if (Meteor.isServer) {
 Meteor.methods({
   'comments.insert'(text) {
     check(text, Object);
+    console.log('trying to comment to postId', text.postId);
 
     // make sure user is logged in before inserting
     if(! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    comments.insert({
+    Comments.insert({
       content: text.content,
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
-      createdAt: new Date(), // current time
+      createdAt: new Date(), // current time,
+      postId: text.postId
     })
   },
   'comments.remove'(commentId) {
@@ -63,7 +65,14 @@ CommentSchema = new SimpleSchema({
   likes: {
     type: Number,
     label: 'Likes',
+    optional: true,
+    defaultValue: 0
+  },
+  postId: {
+    type: String,
+    label:'PostID',
   }
 });
 
 Comments.attachSchema(CommentSchema);
+

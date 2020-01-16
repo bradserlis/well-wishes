@@ -12,18 +12,17 @@ export default class Post extends Component {
     event.preventDefault();
     // Find the text field via the React ref
     const content = ReactDOM.findDOMNode(this.refs.commentContentInput).value.trim();
-    const title = ReactDOM.findDOMNode(this.refs.commentTitleInput).value.trim();
+    const postId = this.props.post._id;
 
     let text = {
       content: content,
-      title: title,
+      postId: postId
     }
 
     Meteor.call('comments.insert', text);
 
     // Clear form
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
-    ReactDOM.findDOMNode(this.refs.commentTitleInput).value = '';
   }
 
   render() {
@@ -47,11 +46,6 @@ export default class Post extends Component {
         {this.props.post.content}
         </span>
         <form className="new-comment" onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              ref="commentTitleInput"
-              placeholder="Comment Title"
-            />
             <textarea
               type="text"
               ref="commentContentInput"

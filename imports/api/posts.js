@@ -67,7 +67,7 @@ PostSchema = new SimpleSchema({
       return new Date()
     }
   },
-  comments: Comments
+  comments: [String]
 });
 
 Posts.attachSchema(PostSchema);
