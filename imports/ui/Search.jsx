@@ -13,7 +13,6 @@ class Search extends Component {
   } 
 
   render() {
-    console.log(this.props.posts)
     return (
       <div className="container">
         <header>
