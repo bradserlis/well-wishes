@@ -3,6 +3,8 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
+import { Posts } from './posts.js';
+
 export const Comments = new Mongo.Collection('comments');
 
 if (Meteor.isServer) {
@@ -15,19 +17,26 @@ if (Meteor.isServer) {
 Meteor.methods({
   'comments.insert'(text) {
     check(text, Object);
-    console.log('trying to comment to postId', text.postId);
 
     // make sure user is logged in before inserting
     if(! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Comments.insert({
+    Comments.insert(
+    {
       content: text.content,
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
       createdAt: new Date(), // current time,
       postId: text.postId
+    }, (err, commentId) => {  
+      Posts.update(
+        { _id: text.postId },
+        {
+         $push: { comments: commentId }
+        }
+      ) 
     })
   },
   'comments.remove'(commentId) {
