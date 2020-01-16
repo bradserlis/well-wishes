@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import ReactDOM from 'react-dom';
 
 import { Posts } from '../api/posts.js';
 
@@ -7,8 +8,27 @@ export default class Post extends Component {
   deletePost = () => {
     Meteor.call('posts.remove', this.props.post._id);
   }
+    handleSubmit = (event) => {
+    event.preventDefault();
+    // Find the text field via the React ref
+    const content = ReactDOM.findDOMNode(this.refs.commentContentInput).value.trim();
+    const title = ReactDOM.findDOMNode(this.refs.commentTitleInput).value.trim();
+
+    let text = {
+      content: content,
+      title: title,
+    }
+
+    Meteor.call('comments.insert', text);
+
+    // Clear form
+    ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
+    ReactDOM.findDOMNode(this.refs.commentTitleInput).value = '';
+  }
 
   render() {
+
+
     return (
       <li>
       { this.props.post.owner === Meteor.userId() ? 
@@ -26,6 +46,23 @@ export default class Post extends Component {
         : 
         {this.props.post.content}
         </span>
+        <form className="new-comment" onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              ref="commentTitleInput"
+              placeholder="Comment Title"
+            />
+            <textarea
+              type="text"
+              ref="commentContentInput"
+              placeholder="New comment..."
+            />
+            <button
+              onSubmit={this.handleSubmit}
+            >
+            Submit
+            </button>
+          </form>
       </li>
     );
   }

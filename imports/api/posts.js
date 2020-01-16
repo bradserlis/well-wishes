@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
-import Comments from './comments.js';
+import { Comments } from './comments.js';
 
 export const Posts = new Mongo.Collection('posts');
 
@@ -67,7 +67,7 @@ PostSchema = new SimpleSchema({
       return new Date()
     }
   },
-  comments: {Comments}
+  comments: Comments
 });
 
 Posts.attachSchema(PostSchema);
