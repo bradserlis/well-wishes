@@ -14,7 +14,7 @@ class Home extends Component {
     return this.props.posts
     .sort((a, b) => b.createdAt - a.createdAt)
     .map((post) => (
-      <Post key={post._id} post={post} />
+      <Post key={post._id} post={post} comments={post.comments} />
     ));
   }
 

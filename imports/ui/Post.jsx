@@ -20,14 +20,23 @@ export default class Post extends Component {
     }
 
     Meteor.call('comments.insert', text);
-
+    
     // Clear form
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
   }
 
+  renderComments = () => {
+    return this.props.comments.map((comment)=>{
+      return (
+        <li>
+          <p>{comment.content}</p>
+        </li>
+      )
+    })
+  } 
+
   render() {
-
-
+    console.log('sanity check - comments', this.props.comments);
     return (
       <li>
       { this.props.post.owner === Meteor.userId() ? 
@@ -45,6 +54,10 @@ export default class Post extends Component {
         : 
         {this.props.post.content}
         </span>
+        <br />
+        <p> comments: </p>
+        <ul>
+        </ul>
         <form className="new-comment" onSubmit={this.handleSubmit}>
             <textarea
               type="text"
