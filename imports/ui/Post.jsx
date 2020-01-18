@@ -39,24 +39,34 @@ class Post extends Component {
   //   // console.log('how did the commentsArray turn out', commentsArray);
   // }
 
-    renderComments = async () => {
-    let commentsArr = [];
+    renderComments = () => {
+    // let commentsArr = [];
     // this.props.commentsArray.forEach((url) => {
     //   let foundComment = Comments.findOne({_id: url})
       // console.log('what was the found comment?', foundComment); 
     // })
     // console.log('how did the commentsArray turn out', commentsArray);
     // Comments.findOne({_id: comment})
-    console.log('this.props.comments', this.props.comments);
-    return this.props.commentsArray.map((id)=>{
-      let matchedComment = this.props.comments.find((comment)=> comment._id === id)
+          console.log('this.props.comments before map', this.props.comments);
+
+    let comments = this.props.commentsArray.map((id)=>{
+      console.log('comments id', id);
+      console.log('this.props.comments', this.props.comments);
+      let matchedComment = this.props.comments.find((comment)=> {
+        console.log('comment in matchedComment', comment);
+        return comment._id === id
+      })
       console.log('what is matchedComment', matchedComment);
+      // return(
+      //   <li> test </li>
+      //   )
       return (
         <li key={matchedComment._id}>
           <p>{matchedComment.content}</p>
         </li>
       )
     })
+  console.log('comments: ', comments);
   } 
 
   render() {
