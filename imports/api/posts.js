@@ -3,8 +3,6 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
-import { Comments } from './comments.js';
-
 export const Posts = new Mongo.Collection('posts');
 
 if (Meteor.isServer) {
@@ -29,7 +27,30 @@ Meteor.methods({
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
       createdAt: new Date(), // current time
+      comments: []
     })
+  },
+  'comments.insert'(text) {
+    check(text, Object);
+
+    // make sure user is logged in before inserting
+    if(! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }  
+    Posts.update(
+      { _id: text.postId },
+      { $push: 
+        { 
+         comments: 
+         {
+           content: text.content,
+           owner: this.userId,
+           username: Meteor.users.findOne(this.userId).username,
+           createdAt: new Date()
+         }
+        } 
+      }
+    )
   },
   'posts.remove'(postId) {
     check(postId, String);
@@ -67,7 +88,35 @@ PostSchema = new SimpleSchema({
       return new Date()
     }
   },
-  comments: [String]
+  comments: [
+    {
+      content: {
+        type: String,
+        label: "Content",
+      },
+      owner: {
+        type: String,
+        label: "Owner",
+      },
+      username: {
+        type: String,
+        label: "Username",
+      },
+      createdAt: {
+        type: Date,
+        label: "Created At",
+        autoValue: () => {
+          return new Date()
+        }
+      },
+      likes: {
+        type: Number,
+        label: 'Likes',
+        optional: true,
+        defaultValue: 0
+      },
+    }
+  ]
 });
 
 Posts.attachSchema(PostSchema);

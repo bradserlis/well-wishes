@@ -4,9 +4,8 @@ import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import { Posts } from '../api/posts';
-import { Comments } from '../api/comments';
 
-class Post extends Component {
+export default class Post extends Component {
   deletePost = () => {
     Meteor.call('posts.remove', this.props.post._id);
   }
@@ -39,35 +38,15 @@ class Post extends Component {
   //   // console.log('how did the commentsArray turn out', commentsArray);
   // }
 
-    renderComments = () => {
-    // let commentsArr = [];
-    // this.props.commentsArray.forEach((url) => {
-    //   let foundComment = Comments.findOne({_id: url})
-      // console.log('what was the found comment?', foundComment); 
-    // })
-    // console.log('how did the commentsArray turn out', commentsArray);
-    // Comments.findOne({_id: comment})
-          console.log('this.props.comments before map', this.props.comments);
-
-    let comments = this.props.commentsArray.map((id)=>{
-      console.log('comments id', id);
-      console.log('this.props.comments', this.props.comments);
-      let matchedComment = this.props.comments.find((comment)=> {
-        console.log('comment in matchedComment', comment);
-        return comment._id === id
-      })
-      console.log('what is matchedComment', matchedComment);
-      // return(
-      //   <li> test </li>
-      //   )
+  renderComments = () => {
+    this.props.post.comments.map((comment)=>{
       return (
-        <li key={matchedComment._id}>
-          <p>{matchedComment.content}</p>
-        </li>
+        <li key={comment.content.toString()}>
+          <p>{comment.content}</p>
+        </li>        
       )
     })
-  console.log('comments: ', comments);
-  } 
+  }
 
   render() {
     console.log('sanity check - postid', this.props.post._id);
@@ -91,7 +70,6 @@ class Post extends Component {
         <br />
         <p> comments: </p>
         <ul>
-          {this.renderComments()}
         </ul>
         <form className="new-comment" onSubmit={this.handleSubmit}>
             <textarea
@@ -109,13 +87,3 @@ class Post extends Component {
     );
   }
 }
-
-export default withTracker(() =>{
-  Meteor.subscribe('comments');
-
-  return {
-    comments: Comments
-    .find({})
-    .fetch()
-  }
-})(Post);
