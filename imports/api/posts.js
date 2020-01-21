@@ -3,6 +3,7 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Tracker } from 'meteor/tracker';
+import { Random } from 'meteor/random'
 
 export const Posts = new Mongo.Collection('posts');
 
@@ -44,22 +45,15 @@ Meteor.methods({
       { $push: 
         { 
          comments: 
-         {
+         { 
+           _id: Random.id(),
            content: content,
            owner: this.userId,
            username: Meteor.users.findOne(this.userId).username,
            createdAt: new Date()
          }
         } 
-      }, (err, response) => {
-        if(err){
-          console.log('there was an error', err);
-        }
-        if(response){
-          console.log('this is the response', response);
-        }
-      }
-    )
+      });
   },
   'posts.remove'(postId) {
     check(postId, String);
@@ -101,6 +95,7 @@ PostSchema = new SimpleSchema({
     type: Array,
   },
   'comments.$': Object,
+  'comments.$._id': String,
   'comments.$.content': String,
   'comments.$.owner': String,
   'comments.$.username': String,

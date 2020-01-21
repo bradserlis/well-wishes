@@ -44,7 +44,6 @@ export default class Post extends Component {
   }
 
   render() {
-    console.log('sanity check - postid', this.props.post._id);
     return (
       <li>
       { this.props.post.owner === Meteor.userId() ? 
