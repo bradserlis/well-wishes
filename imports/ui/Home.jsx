@@ -4,7 +4,6 @@ import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 
 import { Posts } from '../api/posts';
-import { Comments } from '../api/comments';  
 import Post from './Post.jsx';
 import MainLayout from '../client/layouts/MainLayout';
 
@@ -70,14 +69,12 @@ class Home extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('posts', 'comments');
+  Meteor.subscribe('posts');
 
   return {
     currentUser: Meteor.user(),
     posts: Posts
     .find({owner: Meteor.userId()})
     .fetch(),
-    comments: Comments
-    .find({}).fetch()
   };
 })(Home);

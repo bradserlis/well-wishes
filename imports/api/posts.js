@@ -2,8 +2,8 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-
-import { Comments } from './comments.js';
+import { Tracker } from 'meteor/tracker';
+import { Random } from 'meteor/random'
 
 export const Posts = new Mongo.Collection('posts');
 
@@ -29,7 +29,31 @@ Meteor.methods({
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
       createdAt: new Date(), // current time
+      comments: []
     })
+  },
+  'comments.insert'(content, postId) {
+    check(content, String);
+
+    // make sure user is logged in before inserting
+    if(! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Posts.update(
+      { _id: postId.toString()},
+      { $push: 
+        { 
+         comments: 
+         { 
+           _id: Random.id(),
+           content: content,
+           owner: this.userId,
+           username: Meteor.users.findOne(this.userId).username,
+           createdAt: new Date()
+         }
+        } 
+      });
   },
   'posts.remove'(postId) {
     check(postId, String);
@@ -67,7 +91,25 @@ PostSchema = new SimpleSchema({
       return new Date()
     }
   },
-  comments: [String]
-});
+  comments: {
+    type: Array,
+  },
+  'comments.$': Object,
+  'comments.$._id': String,
+  'comments.$.content': String,
+  'comments.$.owner': String,
+  'comments.$.username': String,
+  'comments.$.createdAt': {
+    type: Date,
+    autoValue: () => { return new Date() },
+  },
+  'comments.$.likes': {
+    type: Number,
+    defaultValue: 0,
+    optional: true,
+  },
+}, { check });
 
 Posts.attachSchema(PostSchema);
+
+
