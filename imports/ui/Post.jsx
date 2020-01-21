@@ -34,13 +34,11 @@ export default class Post extends Component {
   // }
 
   renderComments = () => {
-    this.props.post.comments.map((comment)=>{
-      return (
-        <li key={comment.content.toString()}>
-          <p>{comment.content}</p>
+    return this.props.post.comments.map((comment)=> (
+              <li key={comment._id.toString()}>
+          <p>{comment.username} : {comment.content}</p>
         </li>        
-      )
-    })
+    ))
   }
 
   render() {
@@ -64,6 +62,7 @@ export default class Post extends Component {
         <br />
         <p> comments: </p>
         <ul>
+        { this.renderComments() }
         </ul>
         <form className="new-comment" onSubmit={this.handleSubmit}>
             <textarea
