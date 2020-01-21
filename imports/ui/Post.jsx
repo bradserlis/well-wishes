@@ -16,12 +16,7 @@ export default class Post extends Component {
   const content = ReactDOM.findDOMNode(this.refs.commentContentInput).value.trim();
   const postId = this.props.post._id;
 
-    let text = {
-      content: content,
-      postId: postId
-    }
-
-    Meteor.call('comments.insert', text);
+    Meteor.call('comments.insert', content, postId);
     
     // Clear form
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
