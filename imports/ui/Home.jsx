@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
+import { 
+  Container, 
+  Form,
+  Input,
+  Button, 
+} from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
 import Post from './Post.jsx';
@@ -37,26 +43,26 @@ class Home extends Component {
   
   render(){
     return (
+      <Container>
       <div className='home-container'>
         <h1> Home page </h1>
         <div id='home-form-container'>
-          <form className="new-task" onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              ref="titleInput"
-              placeholder="Post title"
-            />
-            <textarea
-              type="text"
-              ref="contentInput"
-              placeholder="Type to add new post"
-            />
-            <button
+          <Form className="new-task" onSubmit={this.handleSubmit}>
+            <Form.Field>
+              <label>Post Title</label>
+              <input placeholder='Post Title' />
+            </Form.Field>
+            <Form.Field>
+              <label>Post Content</label>
+              <input placeholder='Enter new post...' />
+            </Form.Field>
+            <Button
+              type='submit'
               onSubmit={this.handleSubmit}
             >
             Submit
-            </button>
-          </form>
+            </Button>
+          </Form>
         </div>
         <div className='home-posts'>
         <ul>
@@ -64,6 +70,7 @@ class Home extends Component {
         </ul>
         </div>
       </div>
+      </Container>
     )
   }
 }
@@ -78,3 +85,20 @@ export default withTracker(() => {
     .fetch(),
   };
 })(Home);
+
+
+//               type="text"
+//               ref="titleInput"
+//               placeholder="Post title"
+//             />
+//             <textarea
+//               type="text"
+//               ref="contentInput"
+//               placeholder="Type to add new post"
+//             />
+//             <button
+//               onSubmit={this.handleSubmit}
+//             >
+//             Submit
+//             </button>
+//           </form>

@@ -4,3 +4,5 @@ import { render } from 'react-dom';
 
 import '../imports/startup/accounts-config.js';
 import '../imports/client/routes';
+import 'semantic-ui-css/semantic.min.css'
+

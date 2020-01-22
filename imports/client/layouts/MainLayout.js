@@ -1,9 +1,12 @@
 import React from 'react';
 import AccountsUIWrapper from '../../ui/AccountsUIWrapper';
 import { Link } from 'react-router-dom';
+import { Container } from 'semantic-ui-react'
+
 
 const MainLayout = (props) => {
   return (
+      <Container>
     <div className='main-layout'>
       <AccountsUIWrapper />
       <header>
@@ -19,6 +22,7 @@ const MainLayout = (props) => {
       </header>
       {props.children}
     </div>
+      </Container>
   )
 }
 
