@@ -18,7 +18,7 @@ const PostForm = () => {
     setSuccess(true);
     setTimeout(() => {
       setSuccess(false)
-    }, 2000)
+    }, 3000)
   }
 
 
@@ -49,7 +49,6 @@ const PostForm = () => {
 
   return (
     <Form onSubmit={this.handleSubmit} success>
-      <Form.Group>
         <Form.Input
           placeholder='Post Title'
           value={postTitle}
@@ -60,41 +59,17 @@ const PostForm = () => {
           value={postContent}
           onChange={this.updateContent}
         />
-        <Form.Button content='Submit' />
+        <Button primary content='Submit' />
         { success ?
         ( 
           <Message
             success
-            header='Form Completed'
-            content="You're all signed up for the newsletter"
+            header='Added Post Successfully'
           /> 
         ) : ''
         }
-      </Form.Group>
     </Form>
   )
 }
 
 export default PostForm;
-  
-
-    // <Form className="new-task" onSubmit={this.handleSubmit}>
-    //   <Form.Field>
-    //     <label>Post Title</label>
-    //     <input 
-    //     placeholder='Post Title'
-    //     onChange={this.updateTitle}
-    //     value={postTitle}
-    //     />
-    //   </Form.Field>
-    //   <Form.TextArea
-    //   onChange={this.updateContent}
-    //   value={''}
-    //   />
-    //   <Button
-    //     type='submit'
-    //     onSubmit={this.handleSubmit}
-    //   >
-    //   Submit
-    //   </Button>
-    // </Form>
