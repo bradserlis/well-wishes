@@ -11,6 +11,7 @@ import {
 
 import { Posts } from '../api/posts';
 import Post from './Post.jsx';
+import PostForm from './PostForm';
 import MainLayout from '../client/layouts/MainLayout';
 
 class Home extends Component {
@@ -47,22 +48,7 @@ class Home extends Component {
       <div className='home-container'>
         <h1> Home page </h1>
         <div id='home-form-container'>
-          <Form className="new-task" onSubmit={this.handleSubmit}>
-            <Form.Field>
-              <label>Post Title</label>
-              <input placeholder='Post Title' />
-            </Form.Field>
-            <Form.Field>
-              <label>Post Content</label>
-              <input placeholder='Enter new post...' />
-            </Form.Field>
-            <Button
-              type='submit'
-              onSubmit={this.handleSubmit}
-            >
-            Submit
-            </Button>
-          </Form>
+        <PostForm />
         </div>
         <div className='home-posts'>
         <ul>
