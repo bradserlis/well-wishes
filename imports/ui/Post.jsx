@@ -22,17 +22,6 @@ import { Posts } from '../api/posts';
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
   }
 
-  // componentDidMount = () => {
-  //   let commentsArr = [];
-  //   console.log('sanity check - props.commentsArray', this.props.commentsArray);
-  //   this.props.commentsArray.forEach((url) => {
-  //     console.log('what is being searched for on each', url);
-  //     let foundComment = Comments.find({}).fetch();
-  //     console.log('found Comment', foundComment);
-  //   })
-  //   // console.log('how did the commentsArray turn out', commentsArray);
-  // }
-
   renderComments = () => {
     return this.props.post.comments.map((comment)=> (
               <li key={comment._id.toString()}>
