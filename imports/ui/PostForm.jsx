@@ -12,15 +12,14 @@ import {
 const PostForm = () => {
   const [postContent, setPostContent] = useState('')
   const [postTitle, setPostTitle] = useState('')
-  const [success, setSuccess] = useState(false);
+  const [successPostMessage, setSuccessPostMessage] = useState(false);
 
-  showSuccess = () => {
-    setSuccess(true);
+  showPostSuccess = () => {
+    setSuccessPostMessage(true);
     setTimeout(() => {
-      setSuccess(false)
+      setSuccessPostMessage(false)
     }, 3000)
   }
-
 
   updateContent = (content) => {
     setPostContent(content.target.value)
@@ -43,7 +42,7 @@ const PostForm = () => {
     // Clear form
     setPostContent('');
     setPostTitle('');
-    this.showSuccess();
+    this.showPostSuccess();
   }
 
 
@@ -60,7 +59,7 @@ const PostForm = () => {
           onChange={this.updateContent}
         />
         <Button primary content='Submit' />
-        { success ?
+        { successPostMessage ?
         ( 
           <Message
             success
