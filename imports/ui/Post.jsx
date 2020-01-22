@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import { Posts } from '../api/posts';
 
-export default class Post extends Component {
+ export default class Post extends Component {
   deletePost = () => {
     Meteor.call('posts.remove', this.props.post._id);
   }
