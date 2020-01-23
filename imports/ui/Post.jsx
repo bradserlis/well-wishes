@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Card, Button, Form, TextArea } from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
 
@@ -32,40 +33,49 @@ import { Posts } from '../api/posts';
 
   render() {
     return (
-      <li>
-      { this.props.post.owner === Meteor.userId() ? 
-        (
-          <button
-          className="delete"
-          onClick={this.deletePost}
-          >
-          &times;
-          </button>
-        ) : ''
-      }
-        <span className='text'>      
-        <strong>{this.props.post.title}</strong>
-        : 
-        {this.props.post.content}
-        </span>
-        <br />
-        <p> comments: </p>
-        <ul>
-        { this.renderComments() }
-        </ul>
-        <form className="new-comment" onSubmit={this.handleSubmit}>
-            <textarea
+
+    <li>
+      <Card>
+        <Card.Content>
+          <Card.Header>
+            { this.props.post.owner === Meteor.userId() && 
+              (
+                <Button
+                floated='right'
+                className="delete"
+                onClick={this.deletePost}
+                >
+                &times;
+                </Button>
+              )
+            }
+            {this.props.post.title} 
+          </Card.Header>
+        </Card.Content>
+        <Card.Content>
+          <Card.Description>
+            {this.props.post.content} 
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <ul>
+            { this.renderComments() }
+          </ul>
+          <Form className="new-comment" onSubmit={this.handleSubmit}>
+            <TextArea
               type="text"
               ref="commentContentInput"
               placeholder="New comment..."
             />
-            <button
+            <Button
               onSubmit={this.handleSubmit}
             >
             Submit
-            </button>
-          </form>
-      </li>
+            </Button>
+          </Form>
+        </Card.Content>
+      </Card>        
+    </li>
     );
   }
 }
