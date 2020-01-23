@@ -2,13 +2,39 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Card, Button, Form, TextArea } from 'semantic-ui-react'
+import { 
+ Card,
+ Button,
+ Form, 
+ TextArea, 
+ Confirm, 
+} from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
 
  export default class Post extends Component {
+   constructor(props){
+     super(props)
+     this.state={
+       openConfirm: false
+     }
+   }
+
+  openConfirm = () => {
+    this.setState({
+      openConfirm: true
+    })
+  }
+
+  closeConfirm = () => {
+    this.setState({
+      openConfirm: false
+    })
+  }
+
   deletePost = () => {
     Meteor.call('posts.remove', this.props.post._id);
+    this.closeConfirm();
   }
   
   handleSubmit = (event) => {
@@ -40,13 +66,20 @@ import { Posts } from '../api/posts';
           <Card.Header>
             { this.props.post.owner === Meteor.userId() && 
               (
+                <>
+                <Confirm
+                  open={this.state.openConfirm}
+                  onCancel={this.closeConfirm}
+                  onConfirm={this.deletePost}
+                />
                 <Button
                 floated='right'
                 className="delete"
-                onClick={this.deletePost}
+                onClick={this.openConfirm}
                 >
                 &times;
                 </Button>
+                </>
               )
             }
             {this.props.post.title} 
