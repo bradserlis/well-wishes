@@ -72,19 +72,3 @@ export default withTracker(() => {
   };
 })(Home);
 
-
-//               type="text"
-//               ref="titleInput"
-//               placeholder="Post title"
-//             />
-//             <textarea
-//               type="text"
-//               ref="contentInput"
-//               placeholder="Type to add new post"
-//             />
-//             <button
-//               onSubmit={this.handleSubmit}
-//             >
-//             Submit
-//             </button>
-//           </form>

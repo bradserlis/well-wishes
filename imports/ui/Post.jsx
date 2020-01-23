@@ -2,12 +2,39 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import { 
+ Card,
+ Button,
+ Form, 
+ TextArea, 
+ Confirm, 
+} from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
 
  export default class Post extends Component {
+   constructor(props){
+     super(props)
+     this.state={
+       openConfirm: false
+     }
+   }
+
+  openConfirm = () => {
+    this.setState({
+      openConfirm: true
+    })
+  }
+
+  closeConfirm = () => {
+    this.setState({
+      openConfirm: false
+    })
+  }
+
   deletePost = () => {
     Meteor.call('posts.remove', this.props.post._id);
+    this.closeConfirm();
   }
   
   handleSubmit = (event) => {
@@ -22,17 +49,6 @@ import { Posts } from '../api/posts';
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
   }
 
-  // componentDidMount = () => {
-  //   let commentsArr = [];
-  //   console.log('sanity check - props.commentsArray', this.props.commentsArray);
-  //   this.props.commentsArray.forEach((url) => {
-  //     console.log('what is being searched for on each', url);
-  //     let foundComment = Comments.find({}).fetch();
-  //     console.log('found Comment', foundComment);
-  //   })
-  //   // console.log('how did the commentsArray turn out', commentsArray);
-  // }
-
   renderComments = () => {
     return this.props.post.comments.map((comment)=> (
               <li key={comment._id.toString()}>
@@ -43,40 +59,56 @@ import { Posts } from '../api/posts';
 
   render() {
     return (
-      <li>
-      { this.props.post.owner === Meteor.userId() ? 
-        (
-          <button
-          className="delete"
-          onClick={this.deletePost}
-          >
-          &times;
-          </button>
-        ) : ''
-      }
-        <span className='text'>      
-        <strong>{this.props.post.title}</strong>
-        : 
-        {this.props.post.content}
-        </span>
-        <br />
-        <p> comments: </p>
-        <ul>
-        { this.renderComments() }
-        </ul>
-        <form className="new-comment" onSubmit={this.handleSubmit}>
-            <textarea
+
+    <li>
+      <Card>
+        <Card.Content>
+          <Card.Header>
+            { this.props.post.owner === Meteor.userId() && 
+              (
+                <>
+                <Confirm
+                  open={this.state.openConfirm}
+                  onCancel={this.closeConfirm}
+                  onConfirm={this.deletePost}
+                />
+                <Button
+                floated='right'
+                className="delete"
+                onClick={this.openConfirm}
+                >
+                &times;
+                </Button>
+                </>
+              )
+            }
+            {this.props.post.title} 
+          </Card.Header>
+        </Card.Content>
+        <Card.Content>
+          <Card.Description>
+            {this.props.post.content} 
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <ul>
+            { this.renderComments() }
+          </ul>
+          <Form className="new-comment" onSubmit={this.handleSubmit}>
+            <TextArea
               type="text"
               ref="commentContentInput"
               placeholder="New comment..."
             />
-            <button
+            <Button
               onSubmit={this.handleSubmit}
             >
             Submit
-            </button>
-          </form>
-      </li>
+            </Button>
+          </Form>
+        </Card.Content>
+      </Card>        
+    </li>
     );
   }
 }
