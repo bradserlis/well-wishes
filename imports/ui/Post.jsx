@@ -66,7 +66,7 @@ import { Posts } from '../api/posts';
           <Card.Header>
             { this.props.post.owner === Meteor.userId() && 
               (
-                <>
+                <div>
                 <Confirm
                   open={this.state.openConfirm}
                   onCancel={this.closeConfirm}
@@ -79,7 +79,7 @@ import { Posts } from '../api/posts';
                 >
                 &times;
                 </Button>
-                </>
+                </div>
               )
             }
             {this.props.post.title} 
