@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Feed } from 'semantic-ui-react';
+import { Card, Feed, Icon } from 'semantic-ui-react';
 
 class Comment extends Component {
   render(){
@@ -16,7 +16,7 @@ class Comment extends Component {
               <Feed.Extra text> {this.props.data.content} </Feed.Extra>
               <Feed.Meta>
                 <Feed.Like>
-                  {this.props.data.likes} Likes
+                  <Icon name='like' /> {this.props.data.likes} Likes
                 </Feed.Like>
               </Feed.Meta>
               </Feed.Content>
