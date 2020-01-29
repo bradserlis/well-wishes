@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
+import Comment from './Comment';
 
  export default class Post extends Component {
    constructor(props){
@@ -51,9 +52,7 @@ import { Posts } from '../api/posts';
 
   renderComments = () => {
     return this.props.post.comments.map((comment)=> (
-              <li key={comment._id.toString()}>
-          <p>{comment.username} : {comment.content}</p>
-        </li>        
+      <Comment data={comment} key={comment._id.toString()} />
     ))
   }
 
@@ -90,8 +89,8 @@ import { Posts } from '../api/posts';
             {this.props.post.content} 
           </Card.Description>
         </Card.Content>
-        <Card.Content extra>
-          <ul>
+        <Card.Content>
+          <ul style={{'listStyle':'none'}}>
             { this.renderComments() }
           </ul>
           <Form className="new-comment" onSubmit={this.handleSubmit}>
