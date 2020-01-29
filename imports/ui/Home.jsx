@@ -51,7 +51,7 @@ class Home extends Component {
         <PostForm />
         </div>
         <div className='home-posts'>
-        <ul>
+        <ul style={{'listStyle':'none'}}>
           {this.renderPosts()}
         </ul>
         </div>
