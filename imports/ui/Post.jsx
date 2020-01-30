@@ -53,7 +53,7 @@ import CommentForm from './CommentForm';
 
   renderComments = () => {
     return this.props.post.comments.map((comment)=> (
-      <Comment data={comment} key={comment._id.toString()} />
+      <Comment data={comment} postId={this.props.post._id} key={comment._id.toString()} />
     ))
   }
 
