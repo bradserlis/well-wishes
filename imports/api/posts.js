@@ -55,6 +55,24 @@ Meteor.methods({
         } 
       });
   },
+  'likes.insert'(commentId, postId){
+    check(commentId, String);
+    check(postId, String);
+
+    if(! this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Posts.update(
+    { '_id': postId.toString(),
+    'comments._id': commentId.toString()
+  },
+    {$inc:
+      {
+        'comments.$.likes': 1 
+      }
+    })
+  },
   'posts.remove'(postId) {
     check(postId, String);
 

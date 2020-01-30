@@ -15,7 +15,7 @@ class PostForm extends Component {
     super(props)
   }
   
-  handleSubmit = () => {
+  handleSubmit = (event) => {
     event.preventDefault();
       // Find the text field via the React ref
     const content = ReactDOM.findDOMNode(this.refs.commentContentInput).value.trim();

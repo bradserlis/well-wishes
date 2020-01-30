@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Card, Feed, Icon } from 'semantic-ui-react';
 
 class Comment extends Component {
+  addLike = () => {
+    Meteor.call('likes.insert', this.props.data._id, this.props.postId);
+  }
+
   render(){
     return(
       <li key={this.props.data._id.toString()}>
@@ -16,7 +20,7 @@ class Comment extends Component {
               <Feed.Extra text> {this.props.data.content} </Feed.Extra>
               <Feed.Meta>
                 <Feed.Like>
-                  <Icon name='like' /> {this.props.data.likes} Likes
+                  <Icon onClick={this.addLike} name='like' /> {this.props.data.likes} Likes
                 </Feed.Like>
               </Feed.Meta>
               </Feed.Content>
