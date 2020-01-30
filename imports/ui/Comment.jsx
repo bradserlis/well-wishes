@@ -29,18 +29,3 @@ class Comment extends Component {
 }
 
 export default Comment;
-
-          // <Card.Content>
-          //   <Card.Description>
-          //     <h3>{this.props.data.username}</h3> 
-          //   </Card.Description>
-          // </Card.Content>
-          // <Card.Content>
-          //   <Card.Description>
-          //     <p>{this.props.data.content}</p>
-          //     <p><strong>{this.props.data.likes}</strong> Likes</p>
-          //   </Card.Description>
-          // </Card.Content>
-          // <Card.Content extra>  
-          //     <p>{this.props.data.createdAt.toDateString()}</p>
-          // </Card.Content>
