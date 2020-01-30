@@ -57,7 +57,6 @@ import Comment from './Comment';
   }
 
   render() {
-    console.log(this.props.post.comments)
     return (
 
     <li>
@@ -93,7 +92,7 @@ import Comment from './Comment';
             { this.props.post.comments.length > 0 ? 
               (
               <Card.Content>
-              <ul style={{'listStyle':'none'}}>
+              <ul style={{'listStyle':'none', 'paddingInlineStart':'0'}}>
               {this.renderComments()} 
               </ul>
               </Card.Content>
