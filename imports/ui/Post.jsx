@@ -12,6 +12,7 @@ import {
 
 import { Posts } from '../api/posts';
 import Comment from './Comment';
+import CommentForm from './CommentForm';
 
  export default class Post extends Component {
    constructor(props){
@@ -99,23 +100,25 @@ import Comment from './Comment';
               )
             : null }
         <Card.Content>
-          <Form className="new-comment-form" onSubmit={this.handleSubmit}>
-            <TextArea
-              type="text"
-              ref="commentContentInput"
-              placeholder="New comment..."
-              rows={2}
-            />
-            <Button
-              primary
-              onSubmit={this.handleSubmit}
-            >
-            Submit
-            </Button>
-          </Form>
+          <CommentForm post={this.props.post}/>
         </Card.Content>
       </Card>        
     </li>
     );
   }
 }
+
+          // <Form className="new-comment-form" onSubmit={this.handleSubmit}>
+          //   <TextArea
+          //     type="text"
+          //     ref="commentContentInput"
+          //     placeholder="New comment..."
+          //     rows={2}
+          //   />
+          //   <Button
+          //     primary
+          //     onSubmit={this.handleSubmit}
+          //   >
+          //   Submit
+          //   </Button>
+          // </Form>
