@@ -89,17 +89,25 @@ import Comment from './Comment';
             {this.props.post.content} 
           </Card.Description>
         </Card.Content>
+            { this.props.post.comments.length > 0 ? 
+              (
+              <Card.Content>
+              <ul style={{'listStyle':'none', 'paddingInlineStart':'0'}}>
+              {this.renderComments()} 
+              </ul>
+              </Card.Content>
+              )
+            : null }
         <Card.Content>
-          <ul style={{'listStyle':'none'}}>
-            { this.renderComments() }
-          </ul>
-          <Form className="new-comment" onSubmit={this.handleSubmit}>
+          <Form className="new-comment-form" onSubmit={this.handleSubmit}>
             <TextArea
               type="text"
               ref="commentContentInput"
               placeholder="New comment..."
+              rows={2}
             />
             <Button
+              primary
               onSubmit={this.handleSubmit}
             >
             Submit

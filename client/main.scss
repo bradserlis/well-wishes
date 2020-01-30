@@ -1,4 +1,4 @@
-@import '_common.scss';
+@import './_common.scss';
 
 body {
   padding: 10px;
@@ -24,7 +24,7 @@ body {
   }
 }
 
-#home-form-container {
+#home-form-container, .new-comment-form {
   textarea {
     display: block;
     height: 100px;
@@ -37,4 +37,16 @@ body {
     width: $input-width;
     font-size: 20px;
   }
+}
+
+.ui .feed {
+  padding:10px;
+}
+
+.new-comment-form{
+  width: $input-width;
+  font-size: 20px;
+}
+.ui.card>.content, .ui.cards>.card>.content{
+  border-top: 0;
 }
