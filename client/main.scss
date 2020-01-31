@@ -50,3 +50,9 @@ body {
 .ui.card>.content, .ui.cards>.card>.content{
   border-top: 0;
 }
+
+.delete-post-container{
+  display: inline-block;
+    position: absolute;
+    right: 10px;
+}
