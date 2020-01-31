@@ -65,22 +65,24 @@ export default class Post extends Component {
           <Card raised>
             <Card.Content>
               <Card.Header>
-                {this.props.post.title}
-                {this.props.post.owner === Meteor.userId() &&
-                  (
-                    <div className='delete-post-container'>
-                      <Confirm
-                        open={this.state.openConfirm}
-                        onCancel={this.closeConfirm}
-                        onConfirm={this.deletePost}
-                      />
-                      <Icon
-                        name='close'
-                        circular
-                        onClick={this.openConfirm} />
-                    </div>
-                  )
-                }
+                <div className='post-header-container'>
+                  {this.props.post.title}
+                  {this.props.post.owner === Meteor.userId() &&
+                    (
+                      <div className='delete-post-container'>
+                        <Confirm
+                          open={this.state.openConfirm}
+                          onCancel={this.closeConfirm}
+                          onConfirm={this.deletePost}
+                        />
+                        <Icon
+                          name='close'
+                          circular
+                          onClick={this.openConfirm} />
+                      </div>
+                    )
+                  }
+                </div>
               </Card.Header>
             </Card.Content>
             <Card.Content>
