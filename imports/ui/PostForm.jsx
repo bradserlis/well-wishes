@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { 
-  Container, 
+import {
+  Container,
   Form,
   Input,
   Button,
   TextArea,
-  Message 
+  Message
 } from 'semantic-ui-react'
 
 const PostForm = () => {
@@ -48,25 +48,25 @@ const PostForm = () => {
 
   return (
     <Form onSubmit={this.handleSubmit} success>
-        <Form.Input
-          placeholder='Post Title'
-          value={postTitle}
-          onChange={this.updateTitle}
-        />
-        <Form.TextArea
-          placeholder='Post Content'
-          value={postContent}
-          onChange={this.updateContent}
-        />
-        <Button primary content='Submit' />
-        { successPostMessage ?
-        ( 
+      <Form.Input
+        placeholder='Post Title'
+        value={postTitle}
+        onChange={this.updateTitle}
+      />
+      <Form.TextArea
+        placeholder='Post Content'
+        value={postContent}
+        onChange={this.updateContent}
+      />
+      <Button primary content='Submit' />
+      {successPostMessage ?
+        (
           <Message
             success
             header='Added Post Successfully'
-          /> 
+          />
         ) : ''
-        }
+      }
     </Form>
   )
 }

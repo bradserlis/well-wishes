@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
-import { 
-  Container, 
+import {
+  Container,
   Form,
   Input,
   Button,
   TextArea,
-  Message 
+  Message
 } from 'semantic-ui-react';
 
 class PostForm extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
-  
+
   handleSubmit = (event) => {
     event.preventDefault();
-      // Find the text field via the React ref
+    // Find the text field via the React ref
     const content = ReactDOM.findDOMNode(this.refs.commentContentInput).value.trim();
     const postId = this.props.post._id;
 
     Meteor.call('comments.insert', content, postId);
-    
+
     // Clear form
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
   }
-  
-  render(){
-    
-    return(
+
+  render() {
+
+    return (
       <Form className="new-comment-form" onSubmit={this.handleSubmit}>
         <TextArea
           type="text"
