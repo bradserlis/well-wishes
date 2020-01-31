@@ -46,7 +46,23 @@ body {
 .new-comment-form{
   width: $input-width;
   font-size: 20px;
+  text-align: center;
+  
+  .ui.button {
+   margin-top: 8px;
+  }
 }
+
 .ui.card>.content, .ui.cards>.card>.content{
   border-top: 0;
+}
+
+.post-header-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  
+  .delete-post-container{
+    text-align: right;
+  }
 }
