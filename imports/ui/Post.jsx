@@ -75,10 +75,14 @@ export default class Post extends Component {
                           onCancel={this.closeConfirm}
                           onConfirm={this.deletePost}
                         />
-                        <Icon
-                          name='close'
+                        <Button
                           circular
-                          onClick={this.openConfirm} />
+                          negative
+                          icon={'close'}
+                          size={'mini'}
+                          onClick={this.openConfirm}
+                        >
+                        </Button>
                       </div>
                     )
                   }
