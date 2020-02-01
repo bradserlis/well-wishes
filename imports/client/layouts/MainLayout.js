@@ -10,7 +10,7 @@ const MainLayout = (props) => {
       <div className='main-layout'>
         <AccountsUIWrapper />
         <Header>
-          <div className='main-layout-title'> 
+          <div className='main-layout-title'>
             <h1>Well Wishes</h1>
           </div>
           <nav>

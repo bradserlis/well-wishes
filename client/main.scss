@@ -24,6 +24,12 @@ body {
   }
 }
 
+.home-posts{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  
+}
+
 #home-form-container, .new-comment-form {
   textarea {
     display: block;
