@@ -19,7 +19,7 @@ Meteor.methods({
     check(text, Object);
 
     // make sure user is logged in before inserting
-    if(! this.userId) {
+    if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
@@ -36,42 +36,45 @@ Meteor.methods({
     check(content, String);
 
     // make sure user is logged in before inserting
-    if(! this.userId) {
+    if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
     Posts.update(
-      { _id: postId.toString()},
-      { $push: 
-        { 
-         comments: 
-         { 
-           _id: Random.id(),
-           content: content,
-           owner: this.userId,
-           username: Meteor.users.findOne(this.userId).username,
-           createdAt: new Date()
-         }
-        } 
+      { _id: postId.toString() },
+      {
+        $push:
+          {
+            comments:
+              {
+                _id: Random.id(),
+                content: content,
+                owner: this.userId,
+                username: Meteor.users.findOne(this.userId).username,
+                createdAt: new Date()
+              }
+          }
       });
   },
-  'likes.insert'(commentId, postId){
+  'likes.insert'(commentId, postId) {
     check(commentId, String);
     check(postId, String);
 
-    if(! this.userId){
+    if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
     Posts.update(
-    { '_id': postId.toString(),
-    'comments._id': commentId.toString()
-  },
-    {$inc:
       {
-        'comments.$.likes': 1 
-      }
-    })
+        '_id': postId.toString(),
+        'comments._id': commentId.toString()
+      },
+      {
+        $inc:
+          {
+            'comments.$.likes': 1
+          }
+      })
   },
   'posts.remove'(postId) {
     check(postId, String);
