@@ -34,12 +34,14 @@ class Home extends Component {
       .sort((a, b) => b.createdAt - a.createdAt)
       .map((post) => (
         <li key={post._id.toString()}>
-          <Button
-            value={post._id}
-            onClick={this.setActivePost}
-          >
-            {post.title}
-          </Button>
+          <div className='home-posts-list-container'>
+            <Button
+              value={post._id}
+              onClick={this.setActivePost}
+            >
+              {post.title}
+            </Button>
+          </div>
         </li>
       ));
   }

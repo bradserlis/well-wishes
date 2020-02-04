@@ -27,7 +27,17 @@ body {
 .home-posts{
   display: grid;
   grid-template-columns: 25% 75%;
-  
+
+  .home-posts-list-container{
+    button{
+      background:none;
+      color: rgb(1,1,1);
+    }
+
+    button:hover, button:focus{
+      background-color:#c2d1ef;
+    }
+  }
 }
 
 #home-form-container, .new-comment-form {
