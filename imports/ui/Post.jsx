@@ -61,53 +61,51 @@ export default class Post extends Component {
   render() {
     return (
       <div className='post-container'>
-        <li>
-          <Card raised>
-            <Card.Content>
-              <Card.Header>
-                <div className='post-header-container'>
-                  {this.props.post.title}
-                  {this.props.post.owner === Meteor.userId() &&
-                    (
-                      <div className='delete-post-container'>
-                        <Confirm
-                          open={this.state.openConfirm}
-                          onCancel={this.closeConfirm}
-                          onConfirm={this.deletePost}
-                        />
-                        <Button
-                          circular
-                          negative
-                          icon={'close'}
-                          size={'mini'}
-                          onClick={this.openConfirm}
-                        >
-                        </Button>
-                      </div>
-                    )
-                  }
-                </div>
-              </Card.Header>
-            </Card.Content>
-            <Card.Content>
-              <Card.Description>
-                {this.props.post.content}
-              </Card.Description>
-            </Card.Content>
-            {this.props.post.comments.length > 0 ?
-              (
-                <Card.Content>
-                  <ul style={{ 'listStyle': 'none', 'paddingInlineStart': '0' }}>
-                    {this.renderComments()}
-                  </ul>
-                </Card.Content>
-              )
-              : null}
-            <Card.Content>
-              <CommentForm post={this.props.post} />
-            </Card.Content>
-          </Card>
-        </li>
+        <Card raised>
+          <Card.Content>
+            <Card.Header>
+              <div className='post-header-container'>
+                {this.props.post.title}
+                {this.props.post.owner === Meteor.userId() &&
+                  (
+                    <div className='delete-post-container'>
+                      <Confirm
+                        open={this.state.openConfirm}
+                        onCancel={this.closeConfirm}
+                        onConfirm={this.deletePost}
+                      />
+                      <Button
+                        circular
+                        negative
+                        icon={'close'}
+                        size={'mini'}
+                        onClick={this.openConfirm}
+                      >
+                      </Button>
+                    </div>
+                  )
+                }
+              </div>
+            </Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <Card.Description>
+              {this.props.post.content}
+            </Card.Description>
+          </Card.Content>
+          {this.props.post.comments.length > 0 &&
+            (
+              <Card.Content>
+                <ul style={{ 'listStyle': 'none', 'paddingInlineStart': '0' }}>
+                  {this.renderComments()}
+                </ul>
+              </Card.Content>
+            )
+          }
+          <Card.Content>
+            <CommentForm post={this.props.post} />
+          </Card.Content>
+        </Card>
       </div>
     );
   }

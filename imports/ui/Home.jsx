@@ -18,18 +18,17 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePostId: null
+      activePostId: null,
     }
   }
 
   setActivePost = (e) => {
-    console.log('button value', e.target.value)
     this.setState({
       activePostId: e.target.value
     })
   }
 
-  renderPosts = () => {
+  renderPostsList = () => {
     return this.props.posts
       .sort((a, b) => b.createdAt - a.createdAt)
       .map((post) => (
@@ -44,6 +43,11 @@ class Home extends Component {
           </div>
         </li>
       ));
+  }
+
+  renderActivePost = () => {
+    let activePost = this.props.posts.filter((post) => post._id === this.state.activePostId);
+    return (<Post key={activePost._id} post={activePost[0]} />)
   }
 
   handleSubmit = (event) => {
@@ -75,13 +79,12 @@ class Home extends Component {
           <div className='home-posts'>
             <div className='home-posts-list'>
               <ul style={{ 'listStyle': 'none' }}>
-                {this.renderPosts()}
+                {this.renderPostsList()}
               </ul>
             </div>
-            <div className='home-post-active-post'>
-              {this.state.activePostId && <h3> {this.state.activePostId} </h3>}
+            <div className='home-posts-active-post'>
+              {this.state.activePostId && this.renderActivePost()}
             </div>
-
           </div>
         </div>
       </Container>
@@ -99,5 +102,3 @@ export default withTracker(() => {
       .fetch(),
   };
 })(Home);
-
-{/* <Post key={post._id} post={post} /> */ }
