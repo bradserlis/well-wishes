@@ -27,6 +27,11 @@ body {
 .home-posts{
   display: grid;
   grid-template-columns: 25% 75%;
+  margin-bottom: 50px;
+
+  .home-posts-active-post{
+    justify-self: center;
+  }
 
   .home-posts-list-container{
     button{
