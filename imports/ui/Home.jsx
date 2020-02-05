@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   Button,
+  Modal
 } from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
@@ -18,30 +19,43 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePostId: null
+      activePostId: null,
+      showAddPost: false
     }
   }
 
+  addPostToggle = () => {
+    this.setState({
+      showAddPost: !this.state.showAddPost
+    })
+  }
+
   setActivePost = (e) => {
-    console.log('button value', e.target.value)
     this.setState({
       activePostId: e.target.value
     })
   }
 
-  renderPosts = () => {
+  renderPostsList = () => {
     return this.props.posts
       .sort((a, b) => b.createdAt - a.createdAt)
       .map((post) => (
         <li key={post._id.toString()}>
-          <Button
-            value={post._id}
-            onClick={this.setActivePost}
-          >
-            {post.title}
-          </Button>
+          <div className='home-posts-list-container'>
+            <Button
+              value={post._id}
+              onClick={this.setActivePost}
+            >
+              {post.title}
+            </Button>
+          </div>
         </li>
       ));
+  }
+
+  renderActivePost = () => {
+    let activePost = this.props.posts.filter((post) => post._id === this.state.activePostId);
+    return (<Post key={activePost._id} post={activePost[0]} />)
   }
 
   handleSubmit = (event) => {
@@ -67,19 +81,32 @@ class Home extends Component {
       <Container>
         <div className='home-container'>
           <h1> Home page </h1>
-          <div id='home-form-container'>
-            <PostForm />
-          </div>
+          <Modal
+            trigger={<Button positive circular>Add Post</Button>}
+            centered={false}
+            closeOnDimmerClick={false}
+            closeIcon
+          >
+            <Modal.Header>Add Post</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <PostForm />
+              </Modal.Description>
+            </Modal.Content>
+          </Modal>
+          {this.state.showAddPost && (
+            <div id='home-form-container'>
+            </div>
+          )}
           <div className='home-posts'>
-            <div className='home-posts-list'>
+            <div className='home-posts-list-container'>
               <ul style={{ 'listStyle': 'none' }}>
-                {this.renderPosts()}
+                {this.renderPostsList()}
               </ul>
             </div>
-            <div className='home-post-active-post'>
-              {this.state.activePostId && <h3> {this.state.activePostId} </h3>}
+            <div className='home-posts-active-post'>
+              {this.state.activePostId && this.renderActivePost()}
             </div>
-
           </div>
         </div>
       </Container>
@@ -97,5 +124,3 @@ export default withTracker(() => {
       .fetch(),
   };
 })(Home);
-
-{/* <Post key={post._id} post={post} /> */ }

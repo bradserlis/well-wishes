@@ -25,23 +25,46 @@ body {
 }
 
 .home-posts{
-  display: grid;
-  grid-template-columns: 25% 75%;
-  
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+
+  .home-posts-active-post{
+    margin: 0 auto;
+  }
+
+  .home-posts-list-container{
+    ul {
+      padding-left: 0;
+      border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+    }
+
+    li{
+      padding-left: 0;
+      border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+    }
+
+    button{
+      background:none;
+      color: rgb(1,1,1);
+    }
+
+    button:hover, button:focus{
+      background-color:#c2d1ef;
+    }
+  }
 }
 
-#home-form-container, .new-comment-form {
+#home-form-container, .new-comment-form, .ui.modal {
   textarea {
     display: block;
-    height: 100px;
-    width: $input-width;
+    height: 250px;
     font-size: 20px;
   }
 
-  input {
-    display: block;
-    width: $input-width;
+  div.ui.input, input, .ui.form>textarea {
     font-size: 20px;
+    width: 100%
   }
 }
 
@@ -63,12 +86,16 @@ body {
   border-top: 0;
 }
 
-.post-header-container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  align-items: center;
-  
-  .delete-post-container{
-    text-align: right;
+.post-container {
+
+  .post-header-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    
+    .delete-post-container{
+      text-align: right;
+    }
   }
 }
+
