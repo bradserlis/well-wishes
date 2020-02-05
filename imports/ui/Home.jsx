@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   Button,
+  Modal
 } from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
@@ -19,7 +20,14 @@ class Home extends Component {
     super(props);
     this.state = {
       activePostId: null,
+      showAddPost: false
     }
+  }
+
+  addPostToggle = () => {
+    this.setState({
+      showAddPost: !this.state.showAddPost
+    })
   }
 
   setActivePost = (e) => {
@@ -73,11 +81,25 @@ class Home extends Component {
       <Container>
         <div className='home-container'>
           <h1> Home page </h1>
-          <div id='home-form-container'>
-            <PostForm />
-          </div>
+          <Modal
+            trigger={<Button positive circular>Add Post</Button>}
+            centered={false}
+            closeOnDimmerClick={false}
+            closeIcon
+          >
+            <Modal.Header>Add Post</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <PostForm />
+              </Modal.Description>
+            </Modal.Content>
+          </Modal>
+          {this.state.showAddPost && (
+            <div id='home-form-container'>
+            </div>
+          )}
           <div className='home-posts'>
-            <div className='home-posts-list'>
+            <div className='home-posts-list-container'>
               <ul style={{ 'listStyle': 'none' }}>
                 {this.renderPostsList()}
               </ul>
