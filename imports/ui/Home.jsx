@@ -19,7 +19,14 @@ class Home extends Component {
     super(props);
     this.state = {
       activePostId: null,
+      showAddPost: false
     }
+  }
+
+  addPostToggle = () => {
+    this.setState({
+      showAddPost: !this.state.showAddPost
+    })
   }
 
   setActivePost = (e) => {
@@ -73,9 +80,16 @@ class Home extends Component {
       <Container>
         <div className='home-container'>
           <h1> Home page </h1>
-          <div id='home-form-container'>
-            <PostForm />
-          </div>
+          <Button
+            positive
+            onClick={this.addPostToggle}
+            content='Add Post'>
+          </Button>
+          {this.state.showAddPost && (
+            <div id='home-form-container'>
+              <PostForm />
+            </div>
+          )}
           <div className='home-posts'>
             <div className='home-posts-list'>
               <ul style={{ 'listStyle': 'none' }}>
