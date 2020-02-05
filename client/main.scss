@@ -25,15 +25,25 @@ body {
 }
 
 .home-posts{
-  display: grid;
-  grid-template-columns: 25% 75%;
+  display: flex;
+  flex-direction: row;
   margin-bottom: 50px;
 
   .home-posts-active-post{
-    justify-self: center;
+    margin: 0 auto;
   }
 
   .home-posts-list-container{
+    ul {
+      padding-left: 0;
+      border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+    }
+
+    li{
+      padding-left: 0;
+      border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+    }
+
     button{
       background:none;
       color: rgb(1,1,1);
@@ -52,11 +62,10 @@ body {
     font-size: 20px;
   }
 
-  .ui.input, .ui.form>textarea {
-    display: block;
+  div.ui.input, input, .ui.form>textarea {
     font-size: 20px;
+    width: 100%
   }
-
 }
 
 .ui .feed {

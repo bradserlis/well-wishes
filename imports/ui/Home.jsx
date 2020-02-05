@@ -85,8 +85,9 @@ class Home extends Component {
             trigger={<Button positive circular>Add Post</Button>}
             centered={false}
             closeOnDimmerClick={false}
+            closeIcon
           >
-            <Modal.Header>Select a Photo</Modal.Header>
+            <Modal.Header>Add Post</Modal.Header>
             <Modal.Content>
               <Modal.Description>
                 <PostForm />
@@ -98,7 +99,7 @@ class Home extends Component {
             </div>
           )}
           <div className='home-posts'>
-            <div className='home-posts-list'>
+            <div className='home-posts-list-container'>
               <ul style={{ 'listStyle': 'none' }}>
                 {this.renderPostsList()}
               </ul>
