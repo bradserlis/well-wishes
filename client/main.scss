@@ -45,19 +45,18 @@ body {
   }
 }
 
-#home-form-container, .new-comment-form {
+#home-form-container, .new-comment-form, .ui.modal {
   textarea {
     display: block;
-    height: 100px;
-    width: $input-width;
+    height: 250px;
     font-size: 20px;
   }
 
-  input {
+  .ui.input, .ui.form>textarea {
     display: block;
-    width: $input-width;
     font-size: 20px;
   }
+
 }
 
 .ui .feed {

@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   Button,
+  Modal
 } from 'semantic-ui-react'
 
 import { Posts } from '../api/posts';
@@ -80,14 +81,20 @@ class Home extends Component {
       <Container>
         <div className='home-container'>
           <h1> Home page </h1>
-          <Button
-            positive
-            onClick={this.addPostToggle}
-            content='Add Post'>
-          </Button>
+          <Modal
+            trigger={<Button positive circular>Add Post</Button>}
+            centered={false}
+            closeOnDimmerClick={false}
+          >
+            <Modal.Header>Select a Photo</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <PostForm />
+              </Modal.Description>
+            </Modal.Content>
+          </Modal>
           {this.state.showAddPost && (
             <div id='home-form-container'>
-              <PostForm />
             </div>
           )}
           <div className='home-posts'>
