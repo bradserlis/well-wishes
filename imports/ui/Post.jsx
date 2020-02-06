@@ -19,8 +19,15 @@ export default class Post extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      openConfirm: false
+      openConfirm: false,
+      showCommentForm: false
     }
+  }
+
+  toggleCommentForm = () => {
+    this.setState({
+      showCommentForm: !this.state.showCommentForm
+    })
   }
 
   openConfirm = () => {
@@ -103,7 +110,16 @@ export default class Post extends Component {
             )
           }
           <Card.Content>
-            <CommentForm post={this.props.post} />
+            <Button
+              positive
+              circular
+              content='Add Comment'
+              onClick={this.toggleCommentForm}
+            />
+            {
+              this.state.showCommentForm &&
+              <CommentForm post={this.props.post} />
+            }
           </Card.Content>
         </Card>
       </div>
