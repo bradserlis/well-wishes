@@ -19,12 +19,15 @@ export default class Post extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      openConfirm: false
+      openConfirm: false,
+      showCommentForm: false
     }
   }
 
   toggleCommentForm = () => {
-    console.log('toggle pushed');
+    this.setState({
+      showCommentForm: !this.state.showCommentForm
+    })
   }
 
   openConfirm = () => {
