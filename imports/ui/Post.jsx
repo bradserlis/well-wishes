@@ -23,6 +23,10 @@ export default class Post extends Component {
     }
   }
 
+  toggleCommentForm = () => {
+    console.log('toggle pushed');
+  }
+
   openConfirm = () => {
     this.setState({
       openConfirm: true
@@ -103,7 +107,16 @@ export default class Post extends Component {
             )
           }
           <Card.Content>
-            <CommentForm post={this.props.post} />
+            <Button
+              positive
+              circular
+              content='Add Comment'
+              onClick={this.toggleCommentForm}
+            />
+            {
+              this.state.showCommentForm &&
+              <CommentForm post={this.props.post} />
+            }
           </Card.Content>
         </Card>
       </div>
