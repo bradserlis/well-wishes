@@ -80,7 +80,14 @@ class Home extends Component {
     return (
       <Container>
         <div className='home-container'>
-          <h1> Home page </h1>
+          <div className='home-title'>
+            <h1> Home page </h1>
+          </div>
+          <div className='home-welcome-text'>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique senectus et netus et malesuada. In vitae turpis massa sed elementum tempus egestas. Cursus mattis molestie a iaculis at. Velit sed ullamcorper morbi tincidunt ornare massa. Gravida neque convallis a cras semper. Ut consequat semper viverra nam libero justo. Ut porttitor leo a diam sollicitudin tempor id. Aliquam purus sit amet luctus. Senectus et netus et malesuada fames ac turpis egestas maecenas.
+            </p>
+          </div>
           <Modal
             trigger={<Button positive circular>Add Post</Button>}
             centered={false}

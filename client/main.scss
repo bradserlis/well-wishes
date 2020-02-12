@@ -24,36 +24,48 @@ body {
   }
 }
 
-.home-posts{
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 50px;
-
-  .home-posts-active-post{
-    margin: 0 auto;
+.home-container {
+  
+  .home-title{
+    margin-bottom: 10px; 
   }
 
-  .home-posts-list-container{
-    ul {
-      padding-left: 0;
-      border-bottom: 1px solid rgba(1, 1, 1, 0.15);
-    }
+  .home-welcome-text{
+    margin-bottom: 10px;
+  }
 
-    li{
-      padding-left: 0;
-      border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+  .home-posts{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+  
+    .home-posts-active-post{
+      margin: 0 auto;
     }
-
-    button{
-      background:none;
-      color: rgb(1,1,1);
-    }
-
-    button:hover, button:focus{
-      background-color:#c2d1ef;
+  
+    .home-posts-list-container{
+      ul {
+        padding-left: 0;
+        border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+      }
+  
+      li{
+        padding-left: 0;
+        border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+      }
+  
+      button{
+        background:none;
+        color: rgb(1,1,1);
+      }
+  
+      button:hover, button:focus{
+        background-color:#c2d1ef;
+      }
     }
   }
 }
+
 
 #home-form-container, .new-comment-form, .ui.modal {
   textarea {
