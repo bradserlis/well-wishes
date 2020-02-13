@@ -54,6 +54,12 @@ Meteor.methods({
                 createdAt: new Date()
               }
           }
+      }, () => {
+        Meteor.users.update({ _id: this.userId }, {
+          $set: {
+            lastTimeCommented: new Date()
+          }
+        })
       });
   },
   'likes.insert'(commentId, postId) {
