@@ -81,40 +81,44 @@ class Home extends Component {
       <Container>
         <div className='home-container'>
           <div className='home-title'>
-            <h1> Home page </h1>
+            <header>
+              <h1> Home page </h1>
+            </header>
           </div>
-          <div className='home-welcome-text'>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique senectus et netus et malesuada. In vitae turpis massa sed elementum tempus egestas. Cursus mattis molestie a iaculis at. Velit sed ullamcorper morbi tincidunt ornare massa. Gravida neque convallis a cras semper. Ut consequat semper viverra nam libero justo. Ut porttitor leo a diam sollicitudin tempor id. Aliquam purus sit amet luctus. Senectus et netus et malesuada fames ac turpis egestas maecenas.
+          <main>
+            <div className='home-welcome-text'>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique senectus et netus et malesuada. In vitae turpis massa sed elementum tempus egestas. Cursus mattis molestie a iaculis at. Velit sed ullamcorper morbi tincidunt ornare massa. Gravida neque convallis a cras semper. Ut consequat semper viverra nam libero justo. Ut porttitor leo a diam sollicitudin tempor id. Aliquam purus sit amet luctus. Senectus et netus et malesuada fames ac turpis egestas maecenas.
             </p>
-          </div>
-          <Modal
-            trigger={<Button positive circular>Add Post</Button>}
-            centered={false}
-            closeOnDimmerClick={false}
-            closeIcon
-          >
-            <Modal.Header>Add Post</Modal.Header>
-            <Modal.Content>
-              <Modal.Description>
-                <PostForm />
-              </Modal.Description>
-            </Modal.Content>
-          </Modal>
-          {this.state.showAddPost && (
-            <div id='home-form-container'>
             </div>
-          )}
-          <div className='home-posts'>
-            <div className='home-posts-list-container'>
-              <ul style={{ 'listStyle': 'none' }}>
-                {this.renderPostsList()}
-              </ul>
+            <Modal
+              trigger={<Button positive circular>Add Post</Button>}
+              centered={false}
+              closeOnDimmerClick={false}
+              closeIcon
+            >
+              <Modal.Header>Add Post</Modal.Header>
+              <Modal.Content>
+                <Modal.Description>
+                  <PostForm />
+                </Modal.Description>
+              </Modal.Content>
+            </Modal>
+            {this.state.showAddPost && (
+              <div id='home-form-container'>
+              </div>
+            )}
+            <div className='home-posts'>
+              <div className='home-posts-list-container'>
+                <ul style={{ 'listStyle': 'none' }}>
+                  {this.renderPostsList()}
+                </ul>
+              </div>
+              <div className='home-posts-active-post'>
+                {this.state.activePostId && this.renderActivePost()}
+              </div>
             </div>
-            <div className='home-posts-active-post'>
-              {this.state.activePostId && this.renderActivePost()}
-            </div>
-          </div>
+          </main>
         </div>
       </Container>
     )
