@@ -32,6 +32,13 @@ Meteor.methods({
       comments: []
     })
   },
+  'users.checkCommentTimer'() {
+    let lastComment = Meteor.users.findOne(this.userId).lastTimeCommented;
+    let nextComment = Meteor.users.findOne(this.userId).nextTimeCommentAt;
+    console.log('checking last time commented', lastComment);
+    console.log('checking next time comment at', nextComment);
+    console.log('at least one day in the future comparison?', Date.now().getTime > nextComment);
+  },
   'comments.insert'(content, postId) {
     check(content, String);
 
@@ -57,7 +64,8 @@ Meteor.methods({
       }, () => {
         Meteor.users.update({ _id: this.userId }, {
           $set: {
-            lastTimeCommented: new Date()
+            lastTimeCommented: Date.now(),
+            nextTimeCommentAt: Date.now() + (60 * 60 * 24 * 1000)
           }
         })
       });
