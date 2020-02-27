@@ -16,12 +16,9 @@ import Comment from './Comment';
 import CommentForm from './CommentForm';
 
 export default class Post extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      openConfirm: false,
-      showCommentForm: false
-    }
+  state = {
+    openConfirm: false,
+    showCommentForm: false
   }
 
   toggleCommentForm = () => {
