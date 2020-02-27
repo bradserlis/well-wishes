@@ -16,12 +16,9 @@ import PostForm from './PostForm';
 import MainLayout from '../client/layouts/MainLayout';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activePostId: null,
-      showAddPost: false
-    }
+  state = {
+    activePostId: null,
+    showAddPost: false
   }
 
   addPostToggle = () => {
@@ -74,6 +71,9 @@ class Home extends Component {
     // Clear form
     ReactDOM.findDOMNode(this.refs.contentInput).value = '';
     ReactDOM.findDOMNode(this.refs.titleInput).value = '';
+  }
+
+  componentDidMount = () => {
   }
 
   render() {

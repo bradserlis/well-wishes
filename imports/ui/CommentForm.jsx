@@ -20,8 +20,14 @@ class PostForm extends Component {
     // Find the text field via the React ref
     const content = ReactDOM.findDOMNode(this.refs.commentContentInput).value.trim();
     const postId = this.props.post._id;
-
-    Meteor.call('comments.insert', content, postId);
+    let eligibleToComment;
+    Meteor.call('users.checkCommentTimer',
+      (error, result) => {
+        if (error) {
+          throw (error);
+        }
+        result == true ? Meteor.call('comments.insert', content, postId) : alert('Cannot comment yet!');
+      });
 
     // Clear form
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
