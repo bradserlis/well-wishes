@@ -32,6 +32,13 @@ Meteor.methods({
       comments: []
     })
   },
+  async 'users.checkCommentTimer'() {
+    let nextComment = await Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
+    if (nextComment == true) {
+      return true
+    }
+    return (Date.now().getTime > nextComment);
+  },
   'comments.insert'(content, postId) {
     check(content, String);
 
@@ -54,6 +61,13 @@ Meteor.methods({
                 createdAt: new Date()
               }
           }
+      }, () => {
+        Meteor.users.update({ _id: this.userId }, {
+          $set: {
+            lastTimeCommented: Date.now(),
+            nextTimeCommentAt: Date.now() + (60 * 60 * 24 * 1000)
+          }
+        })
       });
   },
   'likes.insert'(commentId, postId) {
