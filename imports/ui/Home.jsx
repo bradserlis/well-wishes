@@ -74,7 +74,6 @@ class Home extends Component {
   }
 
   componentDidMount = () => {
-    console.log('sanity check - checkCommentTimer', Meteor.call('users.checkCommentTimer'));
   }
 
   render() {
