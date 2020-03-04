@@ -17,7 +17,6 @@ class PostForm extends Component {
     // Find the text field via the React ref
     const content = ReactDOM.findDOMNode(this.refs.commentContentInput).value.trim();
     const postId = this.props.post._id;
-    let eligibleToComment;
     Meteor.call('users.checkCommentTimer',
       (error, result) => {
         if (error) {

@@ -3,7 +3,8 @@ import SimpleSchema from 'simpl-schema';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Tracker } from 'meteor/tracker';
-import { Random } from 'meteor/random'
+import { Random } from 'meteor/random';
+import { isAfter } from 'date-fns';
 
 export const Posts = new Mongo.Collection('posts');
 
@@ -32,12 +33,14 @@ Meteor.methods({
       comments: []
     })
   },
-  async 'users.checkCommentTimer'() {
-    let nextComment = await Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
+  'users.checkCommentTimer'() {
+    let nextComment = Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
     if (nextComment == true) {
       return true
+    } else {
+      console.log('is the current date after the nextCommentAt date?', 'Date.now', Date.now(), 'nextComment', nextComment, isAfter(Date.now(), nextComment))
+      return (isAfter(Date.now(), nextComment));
     }
-    return (Date.now().getTime > nextComment);
   },
   'comments.insert'(content, postId) {
     check(content, String);
@@ -46,6 +49,14 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
+
+    Date.prototype.addDays = function (days) {
+      var date = new Date(this.valueOf());
+      date.setDate(date.getDate() + days);
+      return date;
+    }
+
+    let date = new Date();
 
     Posts.update(
       { _id: postId.toString() },
@@ -58,14 +69,14 @@ Meteor.methods({
                 content: content,
                 owner: this.userId,
                 username: Meteor.users.findOne(this.userId).username,
-                createdAt: new Date()
+                createdAt: date
               }
           }
       }, () => {
         Meteor.users.update({ _id: this.userId }, {
           $set: {
-            lastTimeCommented: Date.now(),
-            nextTimeCommentAt: Date.now() + (60 * 60 * 24 * 1000)
+            lastTimeCommented: date,
+            nextTimeCommentAt: date.addDays(1)
           }
         })
       });
