@@ -11,9 +11,6 @@ import {
 } from 'semantic-ui-react';
 
 class PostForm extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   handleSubmit = (event) => {
     event.preventDefault();
