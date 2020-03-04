@@ -33,13 +33,14 @@ Meteor.methods({
       comments: []
     })
   },
-  'users.checkCommentTimer'() {
-    let nextComment = Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
-    if (nextComment == true) {
-      return true
-    } else {
-      console.log('is the current date after the nextCommentAt date?', 'Date.now', Date.now(), 'nextComment', nextComment, isAfter(Date.now(), nextComment))
-      return (isAfter(Date.now(), nextComment));
+  'users.checkCommentTimer'(event) {
+    if (event === 'postComment') {
+      let nextComment = Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
+      if (nextComment == true) {
+        return true
+      } else {
+        return (isAfter(Date.now(), nextComment));
+      }
     }
   },
   'comments.insert'(content, postId) {
