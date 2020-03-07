@@ -6,7 +6,7 @@ import {
   Form,
   Input,
   Button,
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 
 import { Posts } from '../api/posts';
 import Post from './Post.jsx';
@@ -19,7 +19,6 @@ class Search extends Component {
   }
 
   render() {
-
     return (
       <Container>
         <header>
@@ -36,10 +35,9 @@ class Search extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('posts');
+  Meteor.subscribe('otherUserPosts');
 
   return {
-    posts: Posts.find({ owner: { $ne: Meteor.userId() } }).fetch(),
-    currentUser: Meteor.user(),
+    posts: Posts.find().fetch()
   };
 })(Search);
