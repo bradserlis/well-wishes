@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Tracker } from 'meteor/tracker';
 import { Random } from 'meteor/random';
-import { isAfter } from 'date-fns';
+import { isAfter, isSameDay } from 'date-fns';
 
 export const Posts = new Mongo.Collection('posts');
 
@@ -33,13 +33,23 @@ Meteor.methods({
       comments: []
     })
   },
-  'users.checkCommentTimer'() {
-    let nextComment = Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
-    if (nextComment == true) {
-      return true
-    } else {
-      console.log('is the current date after the nextCommentAt date?', 'Date.now', Date.now(), 'nextComment', nextComment, isAfter(Date.now(), nextComment))
-      return (isAfter(Date.now(), nextComment));
+  'users.checkCommentTimer'(event) {
+    if (event === 'postComment') {
+      let nextComment = Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
+      if (nextComment == true) {
+        return true
+      } else {
+        return (isAfter(Date.now(), nextComment));
+      }
+    }
+
+    if (event === 'checkComments') {
+      let lastComment = Meteor.users.findOne(this.userId).lastTimeCommented || false;
+      if (lastComment == false) {
+        return false
+      } else {
+        return (isSameDay(Date.now(), lastComment));
+      }
     }
   },
   'comments.insert'(content, postId) {
