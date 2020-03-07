@@ -18,7 +18,8 @@ import CommentForm from './CommentForm';
 export default class Post extends Component {
   state = {
     openConfirm: false,
-    showCommentForm: false
+    showCommentForm: false,
+    showComments: false
   }
 
   toggleCommentForm = () => {
@@ -56,10 +57,23 @@ export default class Post extends Component {
     ReactDOM.findDOMNode(this.refs.commentContentInput).value = '';
   }
 
+  renderCommentsCheck = () => {
+    Meteor.call('users.checkCommentTimer', 'checkComments', (error, result) => {
+      if (error) {
+        throw error
+      }
+      this.setState({ showComments: result })
+    })
+  }
+
   renderComments = () => {
     return this.props.post.comments.map((comment) => (
       <Comment data={comment} postId={this.props.post._id} key={comment._id.toString()} />
     ))
+  }
+
+  componentDidMount = () => {
+    this.renderCommentsCheck();
   }
 
   render() {
@@ -101,7 +115,7 @@ export default class Post extends Component {
             (
               <Card.Content>
                 <ul style={{ 'listStyle': 'none', 'paddingInlineStart': '0' }}>
-                  {this.renderComments()}
+                  {this.state.showComments && this.renderComments()}
                 </ul>
               </Card.Content>
             )
