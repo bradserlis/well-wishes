@@ -73,7 +73,9 @@ export default class Post extends Component {
   }
 
   componentDidMount = () => {
-    this.renderCommentsCheck();
+    this.props.post.owner === Meteor.userId() ? this.renderCommentsCheck() : this.setState({
+      showComments: true
+    })
   }
 
   render() {
