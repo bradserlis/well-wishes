@@ -117,7 +117,7 @@ export default class Post extends Component {
             (
               <Card.Content>
                 <ul style={{ 'listStyle': 'none', 'paddingInlineStart': '0' }}>
-                  {this.state.showComments && this.renderComments()}
+                  {this.state.showComments === true ? this.renderComments() : <p className='comment-timer-fail-message'> Please post to another user to see your comments! </p>}
                 </ul>
               </Card.Content>
             )
