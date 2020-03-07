@@ -10,9 +10,13 @@ export const Posts = new Mongo.Collection('posts');
 
 if (Meteor.isServer) {
   //this code only runs on the server
-  Meteor.publish('posts', () => {
-    return Posts.find();
+  Meteor.publish('userPosts', () => {
+    return Posts.find({ owner: Meteor.userId() });
   });
+
+  Meteor.publish('otherUserPosts', () => {
+    return Posts.find({ owner: { $ne: Meteor.userId() } })
+  })
 }
 
 Meteor.methods({

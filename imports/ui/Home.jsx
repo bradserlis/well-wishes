@@ -8,7 +8,7 @@ import {
   Input,
   Button,
   Modal
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 
 import { Posts } from '../api/posts';
 import Post from './Post';
@@ -126,12 +126,12 @@ class Home extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('posts');
+  Meteor.subscribe('userPosts');
 
   return {
     currentUser: Meteor.user(),
     posts: Posts
-      .find({ owner: Meteor.userId() })
+      .find()
       .fetch(),
   };
 })(Home);
