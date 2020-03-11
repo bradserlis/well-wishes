@@ -3,9 +3,33 @@
 body {
   padding: 10px;
   font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex: 1;
+}
+
+.router-container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+#react-target{
+  display: flex;
+  flex: 1;
+}
+
+.app-container {
+  background-image: url(/images/wishingwell.jpg);
+  display: flex;
+  flex: 1;
 }
 
 .main-layout {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
   h1 {
     text-align: center;
   }
