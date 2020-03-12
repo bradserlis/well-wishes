@@ -6,8 +6,6 @@ import {
 import Router from '../client/routes';
 import MainLayout from '../client/layouts/MainLayout';
 
-Meteor.startup(() => {
-});
 class App extends Component {
   render() {
     return (
@@ -24,11 +22,3 @@ class App extends Component {
 
 export default App;
 
-{/* <div className="app-container">
-  <header>
-    <h1> Login Screen </h1>
-  </header>
-  <main>
-    <p> Please login above </p>
-  </main>
-</div> */}
