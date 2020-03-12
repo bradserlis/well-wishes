@@ -73,9 +73,6 @@ class Home extends Component {
     ReactDOM.findDOMNode(this.refs.titleInput).value = '';
   }
 
-  componentDidMount = () => {
-  }
-
   render() {
     return (
       <Container>
@@ -126,12 +123,12 @@ class Home extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('userPosts');
+  Meteor.subscribe('posts');
 
   return {
     currentUser: Meteor.user(),
     posts: Posts
-      .find()
+      .find({ owner: Meteor.userId() })
       .fetch(),
   };
 })(Home);
