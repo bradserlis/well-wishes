@@ -35,9 +35,9 @@ class Search extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('otherUserPosts');
+  Meteor.subscribe('posts');
 
   return {
-    posts: Posts.find().fetch()
+    posts: Posts.find({ owner: { $ne: Meteor.userId() } }).fetch()
   };
 })(Search);
