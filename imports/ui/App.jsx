@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='router-container'>
-          <AccountsUIWrapper />
           <Router />
         </div>
       </BrowserRouter>

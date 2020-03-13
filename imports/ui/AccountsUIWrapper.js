@@ -19,7 +19,7 @@ export default class AccountsUIWrapper extends Component {
   render() {
     return (
       <div className='account-container'>
-        <span ref='container' />
+        <div ref='container' />
       </div>
     );
   }

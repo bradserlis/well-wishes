@@ -9,13 +9,20 @@ body {
 }
 
 .account-container{
-  padding: 0 30px;
+  padding: 0 0 0 30px;
 }
 
 .router-container{
   display: flex;
   flex: 1;
   flex-direction: column;
+}
+
+.landing-sign-in{
+  
+  #login-dropdown-list{
+    left: -75px;
+  }
 }
 
 #react-target{
