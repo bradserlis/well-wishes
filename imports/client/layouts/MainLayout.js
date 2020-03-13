@@ -7,8 +7,8 @@ import { Container, Header } from 'semantic-ui-react'
 const MainLayout = (props) => {
   return (
     <div>
-      <AccountsUIWrapper />
       <Container>
+        <AccountsUIWrapper />
         <div className='main-layout'>
           <Header>
             <div className='main-layout-title'>
