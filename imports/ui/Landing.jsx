@@ -2,9 +2,10 @@ import React from 'react';
 
 const Landing = () => {
     return (
-        <div>
-            <h1> Landing Reached </h1>
-        </div>
+        <div className='landing'>
+            <h1>Well Wishes </h1>
+            <h4> Sign in to begin... </h4>
+        </div >
     )
 }
 
