@@ -18,11 +18,13 @@ class Router extends Component {
   render() {
     if (this.props.currentUser) {
       return (
-        <Switch>
-          <Route path='/home' render={props => <Home {...props} />} />
-          <Route path='/search' render={props => <Search {...props} />} />
-          <Redirect to='/home' />
-        </Switch>
+        <MainLayout>
+          <Switch>
+            <Route path='/home' render={props => <Home {...props} />} />
+            <Route path='/search' render={props => <Search {...props} />} />
+            <Redirect to='/home' />
+          </Switch>
+        </MainLayout>
       )
     }
     else {

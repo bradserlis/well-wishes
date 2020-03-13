@@ -1,11 +1,15 @@
 @import './_common.scss';
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans+Condensed:300&display=swap');
 
 body {
   padding: 10px;
-  font-family: sans-serif;
   min-height: 100vh;
   display: flex;
   flex: 1;
+}
+
+.account-container{
+  padding: 0;
 }
 
 .router-container{
@@ -14,21 +18,57 @@ body {
   flex-direction: column;
 }
 
+.landing-sign-in{
+  
+  #login-dropdown-list{
+    left: -65px;
+  }
+}
+
 #react-target{
   display: flex;
   flex: 1;
 }
 
-.app-container {
-  background-image: url(/images/wishingwell.jpg);
+.landing {
   display: flex;
   flex: 1;
+  flex-direction: column;
+  align-items: center;
+
+  .landing-image{
+    background-image: url(images/wishingwell.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 500px;
+    margin: 0 auto;
+    background-position-y: center;
+  }
+
+  h1 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 100px;
+  }
+
+  h4 {
+    margin-top: 0;
+    font-family: 'Montserrat';
+  }
+}
+
+.ui.container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .main-layout {
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-height: 100vh;
+  min-width: 100%;
 
   h1 {
     text-align: center;
