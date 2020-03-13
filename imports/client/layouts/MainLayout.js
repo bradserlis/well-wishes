@@ -11,12 +11,10 @@ const MainLayout = (props) => {
         <AccountsUIWrapper />
         <div className='main-layout'>
           <Header>
-            <div className='main-layout-title'>
-              <h1>Well Wishes</h1>
-            </div>
             <nav>
               <div className='main-layout-links'>
                 <Link to='/home'>Home </Link>
+                <h1>Well Wishes</h1>
                 <Link to='/search'>Search</Link>
               </div>
             </nav>

@@ -23,6 +23,13 @@ body {
   #login-dropdown-list{
     left: -65px;
   }
+.ui.header{
+  margin: 0;
+}
+}
+
+nav{
+  padding: 0;
 }
 
 #react-target{
@@ -85,6 +92,11 @@ body {
     display: flex;
     flex: 1;
     justify-content: space-around;
+    align-items: baseline;
+
+    h1{
+      font-family: Montserrat;
+    }
   }
 }
 
@@ -181,4 +193,3 @@ body {
     border: 1px red solid
   }
 }
-
