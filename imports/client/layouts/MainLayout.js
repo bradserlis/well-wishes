@@ -6,23 +6,23 @@ import { Container, Header } from 'semantic-ui-react'
 
 const MainLayout = (props) => {
   return (
-    <Container>
-      <div className='main-layout'>
+    <div>
+      <Container>
         <AccountsUIWrapper />
-        <Header>
-          <div className='main-layout-title'>
-            <h1>Well Wishes</h1>
-          </div>
-          <nav>
-            <div className='main-layout-links'>
-              <Link to='/home'>Home </Link>
-              <Link to='/search'>Search</Link>
-            </div>
-          </nav>
-        </Header>
-        {props.children}
-      </div>
-    </Container>
+        <div className='main-layout'>
+          <Header>
+            <nav>
+              <div className='main-layout-links'>
+                <Link to='/home'>Home </Link>
+                <h1>Well Wishes</h1>
+                <Link to='/search'>Search</Link>
+              </div>
+            </nav>
+          </Header>
+          {props.children}
+        </div>
+      </Container>
+    </div>
   )
 }
 

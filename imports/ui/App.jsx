@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   BrowserRouter,
 } from 'react-router-dom';
+import { Container } from 'semantic-ui-react'
 
+import AccountsUIWrapper from './AccountsUIWrapper';
 import Router from '../client/routes';
 import MainLayout from '../client/layouts/MainLayout';
 
@@ -11,9 +13,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='router-container'>
-          <MainLayout {...this.props}>
-            <Router />
-          </MainLayout>
+          <Router />
         </div>
       </BrowserRouter>
     )
