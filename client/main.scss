@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans+Condensed:300&display=swap');
 
 body {
-  padding: 10px;
   min-height: 100vh;
   display: flex;
   flex: 1;
@@ -23,9 +22,10 @@ body {
   #login-dropdown-list{
     left: -65px;
   }
-.ui.header{
-  margin: 0;
-}
+
+  .ui.header{
+    margin: 0;
+  }
 }
 
 nav{
@@ -85,7 +85,6 @@ nav{
     display: flex;
     flex: 1;
     border-bottom: 2px rgba(128, 128, 128, 0.28) solid;
-    padding-bottom: 15px;
   }
 
   .main-layout-links {
