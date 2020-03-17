@@ -24,11 +24,7 @@ class Search extends Component {
         <header>
           <h1> Post List </h1>
         </header>
-        <main>
-          <ul>
-            {this.props.posts && this.renderOnePost()}
-          </ul>
-        </main>
+        {this.props.posts && this.renderOnePost()}
       </Container>
     );
   }
