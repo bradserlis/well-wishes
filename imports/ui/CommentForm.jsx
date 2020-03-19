@@ -37,7 +37,7 @@ class PostForm extends Component {
           type="text"
           ref="commentContentInput"
           placeholder="New comment..."
-          rows={2}
+          rows={4}
         />
         <Button
           primary

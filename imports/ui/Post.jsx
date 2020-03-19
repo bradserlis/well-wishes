@@ -113,28 +113,29 @@ export default class Post extends Component {
               {this.props.post.content}
             </Card.Description>
           </Card.Content>
+        </Card>
+        <div className='comments-container'>
+          <Button
+            positive
+            circular
+            fluid
+            content='Add Comment'
+            onClick={this.toggleCommentForm}
+          />
+          {
+            this.state.showCommentForm &&
+            <CommentForm post={this.props.post} />
+          }
           {this.props.post.comments.length > 0 &&
             (
-              <Card.Content>
+              <>
                 <ul style={{ 'listStyle': 'none', 'paddingInlineStart': '0' }}>
                   {this.state.showComments === true ? this.renderComments() : <p className='comment-timer-fail-message'> Please post to another user to see your comments! </p>}
                 </ul>
-              </Card.Content>
+              </>
             )
           }
-          <Card.Content>
-            <Button
-              positive
-              circular
-              content='Add Comment'
-              onClick={this.toggleCommentForm}
-            />
-            {
-              this.state.showCommentForm &&
-              <CommentForm post={this.props.post} />
-            }
-          </Card.Content>
-        </Card>
+        </div>
       </div>
     );
   }
