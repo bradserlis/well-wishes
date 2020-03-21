@@ -145,7 +145,6 @@ nav{
 #home-form-container, .new-comment-form, .ui.modal {
   textarea {
     display: block;
-    height: 250px;
     font-size: 20px;
   }
 
@@ -163,6 +162,8 @@ nav{
   width: $input-width;
   font-size: 20px;
   text-align: center;
+  margin: 25px 0;
+
   
   .ui.button {
    margin-top: 8px;
@@ -173,7 +174,21 @@ nav{
   border-top: 0;
 }
 
+.ui.raised.card {
+  margin: 25px 0;
+}
+
+.comments-container{
+  width: 500px;
+  margin: auto;
+  max-width: 100%;
+}
+
 .post-container {
+
+  width: 700px;
+  max-width: 100%;
+  margin: 20px auto 0;
 
   .post-header-container {
     display: grid;
@@ -183,6 +198,10 @@ nav{
     .delete-post-container{
       text-align: right;
     }
+  }
+
+  .ui.card {
+    width: 100%;
   }
 
   .comment-timer-fail-message{
