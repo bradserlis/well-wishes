@@ -162,6 +162,7 @@ nav{
   width: $input-width;
   font-size: 20px;
   text-align: center;
+  margin: 25px 0;
 
   
   .ui.button {
@@ -171,6 +172,10 @@ nav{
 
 .ui.card>.content, .ui.cards>.card>.content{
   border-top: 0;
+}
+
+.ui.raised.card {
+  margin: 25px 0;
 }
 
 .comments-container{
