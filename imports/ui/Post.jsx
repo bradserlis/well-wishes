@@ -113,13 +113,16 @@ export default class Post extends Component {
           </Card.Content>
         </Card>
         <div className='comments-container'>
-          <Button
-            positive
-            circular
-            fluid
-            content='Add Comment'
-            onClick={this.toggleCommentForm}
-          />
+          {this.props.post.owner !== Meteor.userId() && (
+            <Button
+              positive
+              circular
+              fluid
+              content='Add Comment'
+              onClick={this.toggleCommentForm}
+            />
+          )
+          }
           {
             this.state.showCommentForm &&
             <CommentForm post={this.props.post} />
