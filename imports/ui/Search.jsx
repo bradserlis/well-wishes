@@ -22,7 +22,7 @@ class Search extends Component {
     return (
       <Container>
         <header>
-          <h1> Post List </h1>
+          <h1> POST: </h1>
         </header>
         {this.props.posts && this.renderOnePost()}
       </Container>

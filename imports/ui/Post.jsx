@@ -107,34 +107,36 @@ export default class Post extends Component {
                 }
               </div>
             </Card.Header>
-          </Card.Content>
-          <Card.Content>
             <Card.Description>
               {this.props.post.content}
             </Card.Description>
           </Card.Content>
-          {this.props.post.comments.length > 0 &&
-            (
-              <Card.Content>
-                <ul style={{ 'listStyle': 'none', 'paddingInlineStart': '0' }}>
-                  {this.state.showComments === true ? this.renderComments() : <p className='comment-timer-fail-message'> Please post to another user to see your comments! </p>}
-                </ul>
-              </Card.Content>
-            )
-          }
-          <Card.Content>
+        </Card>
+        <div className='comments-container'>
+          {this.props.post.owner !== Meteor.userId() && (
             <Button
               positive
               circular
+              fluid
               content='Add Comment'
               onClick={this.toggleCommentForm}
             />
-            {
-              this.state.showCommentForm &&
-              <CommentForm post={this.props.post} />
-            }
-          </Card.Content>
-        </Card>
+          )
+          }
+          {
+            this.state.showCommentForm &&
+            <CommentForm post={this.props.post} />
+          }
+          {this.props.post.comments.length > 0 &&
+            (
+              <>
+                <ul style={{ 'listStyle': 'none', 'paddingInlineStart': '0' }}>
+                  {this.state.showComments === true ? this.renderComments() : <p className='comment-timer-fail-message'> Please post to another user to see your comments! </p>}
+                </ul>
+              </>
+            )
+          }
+        </div>
       </div>
     );
   }
