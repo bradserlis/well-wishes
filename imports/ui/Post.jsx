@@ -107,8 +107,6 @@ export default class Post extends Component {
                 }
               </div>
             </Card.Header>
-          </Card.Content>
-          <Card.Content>
             <Card.Description>
               {this.props.post.content}
             </Card.Description>
