@@ -1,8 +1,8 @@
 import React from 'react';
 import AccountsUIWrapper from '../../ui/AccountsUIWrapper';
 import { Link } from 'react-router-dom';
-import { Container, Header } from 'semantic-ui-react'
-
+import { Container, Header, Icon } from 'semantic-ui-react';
+import { FaRegComments, FaUserCircle } from "react-icons/fa";
 
 const MainLayout = (props) => {
   return (
@@ -13,9 +13,9 @@ const MainLayout = (props) => {
           <Header>
             <nav>
               <div className='main-layout-links'>
-                <Link to='/home'>Home </Link>
+                <Link to='/home'> <FaUserCircle />  </Link>
                 <h3>Well Wishes</h3>
-                <Link to='/search'>Search</Link>
+                <Link to='/search'><FaRegComments /> </Link>
               </div>
             </nav>
           </Header>

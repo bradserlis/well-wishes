@@ -101,9 +101,19 @@ nav{
   .main-layout-links {
     display: flex;
     flex: 1;
-    justify-content: space-around;
+    justify-content: center;
     align-items: baseline;
     font-size: 15px;
+
+    a{
+      font-size: 25px;
+      margin: 0px 25px;
+      transition: .35s ease-in-out;
+    }
+    a:hover{
+      color: #0a3b6b;
+      font-size: 30px;
+    }
 
     h3{
       font-family: Montserrat;
