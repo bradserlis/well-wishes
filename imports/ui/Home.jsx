@@ -79,14 +79,14 @@ class Home extends Component {
         <div className='home-container'>
           <div className='home-title'>
             <header>
-              <h1> Home page </h1>
+              <h3> Home </h3>
             </header>
           </div>
           <main>
-            <div className='home-welcome-text'>
+            <div className='welcome-text'>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique senectus et netus et malesuada. In vitae turpis massa sed elementum tempus egestas. Cursus mattis molestie a iaculis at. Velit sed ullamcorper morbi tincidunt ornare massa. Gravida neque convallis a cras semper. Ut consequat semper viverra nam libero justo. Ut porttitor leo a diam sollicitudin tempor id. Aliquam purus sit amet luctus. Senectus et netus et malesuada fames ac turpis egestas maecenas.
-            </p>
+                Thank you for contributing to Well Wishes. <br /> Search above to leave comments on another's post, and then you will be able to view recent comments to your own post.
+              </p>
             </div>
             <Modal
               trigger={<Button positive circular>Add Post</Button>}

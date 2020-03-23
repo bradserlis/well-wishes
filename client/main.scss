@@ -1,5 +1,5 @@
 @import './_common.scss';
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans+Condensed:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|PT+Sans+Narrow|Open+Sans+Condensed:300&display=swap');
 
 body {
   min-height: 100vh;
@@ -77,7 +77,7 @@ nav{
   min-height: 100vh;
   min-width: 100%;
 
-  h1 {
+  h1, h3 {
     text-align: center;
   }
 
@@ -87,14 +87,28 @@ nav{
     border-bottom: 2px rgba(128, 128, 128, 0.28) solid;
   }
 
+  .welcome-text{
+    margin-bottom: 10px;
+    text-align: center;
+    
+    p {
+      font-family: Open Sans Condensed;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
   .main-layout-links {
     display: flex;
     flex: 1;
     justify-content: space-around;
     align-items: baseline;
+    font-size: 15px;
 
-    h1{
+    h3{
       font-family: Montserrat;
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 }
@@ -103,10 +117,6 @@ nav{
   
   .home-title{
     margin-bottom: 10px; 
-  }
-
-  .home-welcome-text{
-    margin-bottom: 10px;
   }
 
   .home-posts{

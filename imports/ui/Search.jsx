@@ -22,8 +22,13 @@ class Search extends Component {
     return (
       <Container>
         <header>
-          <h1> POST: </h1>
+          <h3> Search: </h3>
         </header>
+        <div className='welcome-text'>
+          <p>
+            Here is a user's post that could use your well wishes!
+        </p>
+        </div>
         {this.props.posts && this.renderOnePost()}
       </Container>
     );

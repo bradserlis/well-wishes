@@ -14,7 +14,7 @@ const MainLayout = (props) => {
             <nav>
               <div className='main-layout-links'>
                 <Link to='/home'>Home </Link>
-                <h1>Well Wishes</h1>
+                <h3>Well Wishes</h3>
                 <Link to='/search'>Search</Link>
               </div>
             </nav>
