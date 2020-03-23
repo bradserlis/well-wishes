@@ -22,7 +22,7 @@ class Search extends Component {
     return (
       <Container>
         <header>
-          <h3> Search: </h3>
+          <h3> Search </h3>
         </header>
         <div className='welcome-text'>
           <p>
