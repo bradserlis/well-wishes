@@ -89,7 +89,7 @@ class Home extends Component {
               </p>
             </div>
             <Modal
-              trigger={<Button positive circular>Add Post</Button>}
+              trigger={<Button positive fluid circular>Add Post</Button>}
               centered={false}
               closeOnDimmerClick={false}
               closeIcon
