@@ -84,7 +84,7 @@ nav{
   nav {
     display: flex;
     flex: 1;
-    border-bottom: 2px rgba(128, 128, 128, 0.28) solid;
+    border-bottom: 1px rgba(128, 128, 128, 0.28) solid;
   }
 
   .welcome-text{
@@ -101,9 +101,19 @@ nav{
   .main-layout-links {
     display: flex;
     flex: 1;
-    justify-content: space-around;
+    justify-content: center;
     align-items: baseline;
     font-size: 15px;
+
+    a{
+      font-size: 25px;
+      margin: 0px 25px;
+      transition: .25s ease;
+    }
+    a:hover{
+      color: #0a3b6b;
+      font-size: 30px;
+    }
 
     h3{
       font-family: Montserrat;
@@ -114,6 +124,13 @@ nav{
 }
 
 .home-container {
+
+  .ui.positive.button{
+    background-color: hsl(134, 47%, 86%);
+    color: #024612;
+    margin: auto;
+    max-width: 40%;
+  }
   
   .home-title{
     margin-bottom: 10px; 
@@ -145,7 +162,10 @@ nav{
       }
   
       button:hover, button:focus{
-        background-color:#c2d1ef;
+        font-size: 1.2rem;
+      } 
+      button:focus{
+        color: hsl(208, 98%, 11%);
       }
     }
   }
@@ -176,7 +196,9 @@ nav{
 
   
   .ui.button {
-   margin-top: 8px;
+    margin-top: 8px;
+    background-color: hsla(206, 50%, 85%, 1);
+    color: hsl(206, 98%, 20%);
   }
 }
 
@@ -192,6 +214,11 @@ nav{
   width: 500px;
   margin: auto;
   max-width: 100%;
+
+  .ui.positive.button{
+    background-color: hsl(134, 47%, 86%);
+    color: #024612;
+  }
 }
 
 .post-container {
