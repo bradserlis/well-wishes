@@ -3,7 +3,8 @@ import { Card, Feed, Icon } from 'semantic-ui-react';
 
 class Comment extends Component {
   addLike = () => {
-    Meteor.call('likes.insert', this.props.data._id, this.props.postId);
+    this.props.data.owner !== Meteor.userId() ?
+      Meteor.call('likes.insert', this.props.data._id, this.props.postId) : alert('Cannot like your own comment');
   }
 
   render() {
