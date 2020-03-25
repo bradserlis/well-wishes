@@ -12,10 +12,19 @@ import { Posts } from '../api/posts';
 import Post from './Post.jsx';
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+    let postIndex = Math.floor(Math.random() * this.props.posts.length);
+    this.state = {
+      chosenPostId: this.props.posts[postIndex]._id
+    }
+  }
 
   renderOnePost = () => {
-    let postChoice = Math.floor(Math.random() * this.props.posts.length);
-    return <Post key={this.props.posts[postChoice]._id} post={this.props.posts[postChoice]} />
+    let postChoice = this.props.posts.find((post) => {
+      return post._id === this.state.chosenPostId
+    })
+    return <Post key={this.state.chosenPostId} post={postChoice} />
   }
 
   render() {
