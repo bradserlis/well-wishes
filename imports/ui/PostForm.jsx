@@ -5,12 +5,25 @@ import {
   Form,
   Input,
   Button,
-  TextArea
+  TextArea,
+  Dimmer,
+  Header
 } from 'semantic-ui-react'
 
 const PostForm = (props) => {
-  const [postContent, setPostContent] = useState('')
-  const [postTitle, setPostTitle] = useState('')
+  const [postContent, setPostContent] = useState('');
+  const [postTitle, setPostTitle] = useState('');
+  const [showDimmer, setShowDimmer] = useState(false);
+
+  showSuccessDimmer = () => {
+    setShowDimmer(true)
+    setTimeout(() => {
+      setShowDimmer(false)
+    }, 1200)
+    setTimeout(() => {
+      props.addPostToggle()
+    }, 2000)
+  }
 
   updateContent = (content) => {
     setPostContent(content.target.value)
@@ -33,7 +46,7 @@ const PostForm = (props) => {
     // Clear form
     setPostContent('');
     setPostTitle('');
-    props.addPostToggle()
+    showSuccessDimmer();
   }
 
 
@@ -50,6 +63,15 @@ const PostForm = (props) => {
         onChange={this.updateContent}
       />
       <Button primary content='Submit' />
+      {showDimmer &&
+        (
+          <Dimmer active={showDimmer} page>
+            <Header inverted>
+              Added Post Sucessfully!
+            </Header>
+          </Dimmer>
+        )
+      }
     </Form>
   )
 }
