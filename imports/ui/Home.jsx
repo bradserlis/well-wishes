@@ -7,7 +7,8 @@ import {
   Form,
   Input,
   Button,
-  Modal
+  Modal,
+  Message
 } from 'semantic-ui-react';
 
 import { Posts } from '../api/posts';
@@ -18,7 +19,8 @@ import MainLayout from '../client/layouts/MainLayout';
 class Home extends Component {
   state = {
     activePostId: null,
-    showAddPost: false
+    showAddPost: false,
+    successPostMessage: false
   }
 
   addPostToggle = () => {
@@ -31,6 +33,17 @@ class Home extends Component {
     this.setState({
       activePostId: e.target.value
     })
+  }
+
+  showPostSuccess = () => {
+    this.setState({
+      setSuccessPostMessage: true
+    });
+    setTimeout(() => {
+      this.setState({
+        setSuccessPostMessage: false
+      })
+    }, 1200)
   }
 
   renderPostsList = () => {
@@ -55,23 +68,23 @@ class Home extends Component {
     return (<Post key={activePost._id} post={activePost[0]} />)
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    // Find the text field via the React ref
-    const content = ReactDOM.findDOMNode(this.refs.contentInput).value.trim();
-    const title = ReactDOM.findDOMNode(this.refs.titleInput).value.trim();
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   // Find the text field via the React ref
+  //   const content = ReactDOM.findDOMNode(this.refs.contentInput).value.trim();
+  //   const title = ReactDOM.findDOMNode(this.refs.titleInput).value.trim();
 
-    let text = {
-      content: content,
-      title: title,
-    }
+  //   let text = {
+  //     content: content,
+  //     title: title,
+  //   }
 
-    Meteor.call('posts.insert', text);
+  //   Meteor.call('posts.insert', text);
 
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.contentInput).value = '';
-    ReactDOM.findDOMNode(this.refs.titleInput).value = '';
-  }
+  //   // Clear form
+  //   ReactDOM.findDOMNode(this.refs.contentInput).value = '';
+  //   ReactDOM.findDOMNode(this.refs.titleInput).value = '';
+  // }
 
   render() {
     return (
@@ -88,6 +101,14 @@ class Home extends Component {
                 Thank you for contributing to Well Wishes. <br /> Search above to leave comments on another's post, and then you will be able to view recent comments to your own post.
               </p>
             </div>
+            {this.state.successPostMessage ?
+              (
+                <Message
+                  success
+                  header='Added Post Successfully'
+                />
+              ) : ''
+            }
             <Modal
               trigger={<Button onClick={this.addPostToggle} positive fluid circular>Add Post</Button>}
               open={this.state.showAddPost}

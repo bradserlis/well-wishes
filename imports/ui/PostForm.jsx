@@ -5,22 +5,12 @@ import {
   Form,
   Input,
   Button,
-  TextArea,
-  Message
+  TextArea
 } from 'semantic-ui-react'
 
 const PostForm = (props) => {
   const [postContent, setPostContent] = useState('')
   const [postTitle, setPostTitle] = useState('')
-  const [successPostMessage, setSuccessPostMessage] = useState(false);
-
-  showPostSuccess = () => {
-    setSuccessPostMessage(true);
-    setTimeout(() => {
-      props.addPostToggle()
-      setSuccessPostMessage(false)
-    }, 2000)
-  }
 
   updateContent = (content) => {
     setPostContent(content.target.value)
@@ -43,7 +33,7 @@ const PostForm = (props) => {
     // Clear form
     setPostContent('');
     setPostTitle('');
-    this.showPostSuccess();
+    props.addPostToggle()
   }
 
 
@@ -60,14 +50,6 @@ const PostForm = (props) => {
         onChange={this.updateContent}
       />
       <Button primary content='Submit' />
-      {successPostMessage ?
-        (
-          <Message
-            success
-            header='Added Post Successfully'
-          />
-        ) : ''
-      }
     </Form>
   )
 }
