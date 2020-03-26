@@ -34,13 +34,20 @@ Meteor.methods({
     })
   },
   'users.checkCommentTimer'(event) {
+    const alwaysTrue = true;
     if (event === 'postComment') {
+      if (alwaysTrue) {
+        return true
+      }
+
+      //=== NOTE - If wanting to limit posts in the future
       let nextComment = Meteor.users.findOne(this.userId).nextTimeCommentAt || true;
       if (nextComment == true) {
         return true
       } else {
         return (isAfter(Date.now(), nextComment));
       }
+      //===
     }
 
     if (event === 'checkComments') {

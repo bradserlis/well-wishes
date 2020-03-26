@@ -37,7 +37,7 @@ class Search extends Component {
         </header>
         <div className='welcome-text'>
           <p>
-            Here is a user's post that could use your well wishes!
+            Here is a user's post that could use your encouragement and well wishes!
         </p>
         </div>
         {this.props.posts.length > 0 ? this.renderOnePost() : <h3> No other posts available to view </h3>}
