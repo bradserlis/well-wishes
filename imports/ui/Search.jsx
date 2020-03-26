@@ -40,7 +40,7 @@ class Search extends Component {
             Here is a user's post that could use your well wishes!
         </p>
         </div>
-        {this.props.posts.length > 0 && this.renderOnePost()}
+        {this.props.posts.length > 0 ? this.renderOnePost() : <h3> No other posts available to view </h3>}
       </Container>
     );
   }
