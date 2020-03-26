@@ -89,15 +89,18 @@ class Home extends Component {
               </p>
             </div>
             <Modal
-              trigger={<Button positive fluid circular>Add Post</Button>}
+              trigger={<Button onClick={this.addPostToggle} positive fluid circular>Add Post</Button>}
+              open={this.state.showAddPost}
+              onClose={this.addPostToggle}
               centered={false}
               closeOnDimmerClick={false}
+              closeOnEscape={true}
               closeIcon
             >
               <Modal.Header>Add Post</Modal.Header>
               <Modal.Content>
                 <Modal.Description>
-                  <PostForm />
+                  <PostForm addPostToggle={this.addPostToggle} />
                 </Modal.Description>
               </Modal.Content>
             </Modal>

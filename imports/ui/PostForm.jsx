@@ -9,7 +9,7 @@ import {
   Message
 } from 'semantic-ui-react'
 
-const PostForm = () => {
+const PostForm = (props) => {
   const [postContent, setPostContent] = useState('')
   const [postTitle, setPostTitle] = useState('')
   const [successPostMessage, setSuccessPostMessage] = useState(false);
@@ -17,8 +17,9 @@ const PostForm = () => {
   showPostSuccess = () => {
     setSuccessPostMessage(true);
     setTimeout(() => {
+      props.addPostToggle()
       setSuccessPostMessage(false)
-    }, 3000)
+    }, 2000)
   }
 
   updateContent = (content) => {
