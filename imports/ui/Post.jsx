@@ -41,6 +41,7 @@ export default class Post extends Component {
   }
 
   deletePost = () => {
+    this.props.setActivePostNull()
     Meteor.call('posts.remove', this.props.post._id);
     this.closeConfirm();
   }
@@ -113,15 +114,16 @@ export default class Post extends Component {
           </Card.Content>
         </Card>
         <div className='comments-container'>
-          {this.props.post.owner !== Meteor.userId() && (
-            <Button
-              positive
-              circular
-              fluid
-              content='Add Comment'
-              onClick={this.toggleCommentForm}
-            />
-          )
+          {this.props.post.owner !== Meteor.userId() &&
+            (
+              <Button
+                positive
+                circular
+                fluid
+                content='Add Comment'
+                onClick={this.toggleCommentForm}
+              />
+            )
           }
           {
             this.state.showCommentForm &&

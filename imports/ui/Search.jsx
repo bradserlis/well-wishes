@@ -14,9 +14,11 @@ import Post from './Post.jsx';
 class Search extends Component {
   constructor(props) {
     super(props);
-    let postIndex = Math.floor(Math.random() * this.props.posts.length);
-    this.state = {
-      chosenPostId: this.props.posts[postIndex]._id
+    if (this.props.posts.length > 0) {
+      let postIndex = Math.floor(Math.random() * this.props.posts.length);
+      this.state = {
+        chosenPostId: this.props.posts[postIndex]._id
+      }
     }
   }
 
@@ -35,10 +37,10 @@ class Search extends Component {
         </header>
         <div className='welcome-text'>
           <p>
-            Here is a user's post that could use your well wishes!
+            Here is a user's post that could use your encouragement and well wishes!
         </p>
         </div>
-        {this.props.posts && this.renderOnePost()}
+        {this.props.posts.length > 0 ? this.renderOnePost() : <h3> No other posts available to view </h3>}
       </Container>
     );
   }
