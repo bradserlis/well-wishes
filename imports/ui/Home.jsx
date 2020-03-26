@@ -7,7 +7,7 @@ import {
   Form,
   Input,
   Button,
-  Modal
+  Modal,
 } from 'semantic-ui-react';
 
 import { Posts } from '../api/posts';
@@ -18,7 +18,7 @@ import MainLayout from '../client/layouts/MainLayout';
 class Home extends Component {
   state = {
     activePostId: null,
-    showAddPost: false
+    showAddPost: false,
   }
 
   addPostToggle = () => {
@@ -55,24 +55,6 @@ class Home extends Component {
     return (<Post key={activePost._id} post={activePost[0]} />)
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    // Find the text field via the React ref
-    const content = ReactDOM.findDOMNode(this.refs.contentInput).value.trim();
-    const title = ReactDOM.findDOMNode(this.refs.titleInput).value.trim();
-
-    let text = {
-      content: content,
-      title: title,
-    }
-
-    Meteor.call('posts.insert', text);
-
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.contentInput).value = '';
-    ReactDOM.findDOMNode(this.refs.titleInput).value = '';
-  }
-
   render() {
     return (
       <Container>
@@ -89,15 +71,18 @@ class Home extends Component {
               </p>
             </div>
             <Modal
-              trigger={<Button positive fluid circular>Add Post</Button>}
+              trigger={<Button onClick={this.addPostToggle} positive fluid circular>Add Post</Button>}
+              open={this.state.showAddPost}
+              onClose={this.addPostToggle}
               centered={false}
               closeOnDimmerClick={false}
+              closeOnEscape={true}
               closeIcon
             >
               <Modal.Header>Add Post</Modal.Header>
               <Modal.Content>
                 <Modal.Description>
-                  <PostForm />
+                  <PostForm addPostToggle={this.addPostToggle} />
                 </Modal.Description>
               </Modal.Content>
             </Modal>

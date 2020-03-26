@@ -6,19 +6,23 @@ import {
   Input,
   Button,
   TextArea,
-  Message
+  Dimmer,
+  Header
 } from 'semantic-ui-react'
 
-const PostForm = () => {
-  const [postContent, setPostContent] = useState('')
-  const [postTitle, setPostTitle] = useState('')
-  const [successPostMessage, setSuccessPostMessage] = useState(false);
+const PostForm = (props) => {
+  const [postContent, setPostContent] = useState('');
+  const [postTitle, setPostTitle] = useState('');
+  const [showDimmer, setShowDimmer] = useState(false);
 
-  showPostSuccess = () => {
-    setSuccessPostMessage(true);
+  showSuccessDimmer = () => {
+    setShowDimmer(true)
     setTimeout(() => {
-      setSuccessPostMessage(false)
-    }, 3000)
+      setShowDimmer(false)
+    }, 1200)
+    setTimeout(() => {
+      props.addPostToggle()
+    }, 2000)
   }
 
   updateContent = (content) => {
@@ -42,7 +46,7 @@ const PostForm = () => {
     // Clear form
     setPostContent('');
     setPostTitle('');
-    this.showPostSuccess();
+    showSuccessDimmer();
   }
 
 
@@ -59,13 +63,14 @@ const PostForm = () => {
         onChange={this.updateContent}
       />
       <Button primary content='Submit' />
-      {successPostMessage ?
+      {showDimmer &&
         (
-          <Message
-            success
-            header='Added Post Successfully'
-          />
-        ) : ''
+          <Dimmer active={showDimmer} page>
+            <Header inverted>
+              Added Post Sucessfully!
+            </Header>
+          </Dimmer>
+        )
       }
     </Form>
   )
