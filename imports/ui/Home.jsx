@@ -33,6 +33,12 @@ class Home extends Component {
     })
   }
 
+  setActivePostNull = () => {
+    this.setState({
+      activePostId: null
+    })
+  }
+
   renderPostsList = () => {
     return this.props.posts
       .sort((a, b) => b.createdAt - a.createdAt)
@@ -52,7 +58,7 @@ class Home extends Component {
 
   renderActivePost = () => {
     let activePost = this.props.posts.filter((post) => post._id === this.state.activePostId);
-    return (<Post key={activePost._id} post={activePost[0]} />)
+    return (<Post key={activePost._id} post={activePost[0]} setActivePostNull={this.setActivePostNull} />)
   }
 
   render() {
